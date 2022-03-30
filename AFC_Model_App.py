@@ -4,7 +4,6 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 import altair as alt
-#test
 
 st.title("Rayleigh Fractionation Model")
 
