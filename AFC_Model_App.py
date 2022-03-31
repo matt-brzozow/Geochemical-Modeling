@@ -4,7 +4,7 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-st.title("Rayleigh Fractionation Model")
+st.title("Bulk-rock Geochemical Modeler")
 
 st.write("-------------")
 st.write("")
@@ -13,7 +13,8 @@ st.write("")
 # Initial melt composition
 #####################################################################################################
 
-st.subheader("Initial Composition and Model Results")
+
+st.header("Initial Composition")
 st.write("")
 
 with st.expander("Starting silicate melt composition (Default is OIB)"):
@@ -21,31 +22,31 @@ with st.expander("Starting silicate melt composition (Default is OIB)"):
     col1_a, col2_a, col3_a, col4_a = st.columns([1, 1, 1, 1])
 
     with col1_a:
-        Th_sil_i = st.number_input("Th (ppm)", min_value = 0.0, value = 4.0)
-        Nb_sil_i = st.number_input("Nb (ppm)", min_value = 0.0, value = 48.0)
-        La_sil_i = st.number_input("La (ppm)", min_value = 0.0, value = 37.0)
-        Ce_sil_i = st.number_input("Ce (ppm)", min_value = 0.0, value = 80.0)
-        Pr_sil_i = st.number_input("Pr (ppm)", min_value = 0.0, value = 9.7)
-        Nd_sil_i = st.number_input("Nd (ppm)", min_value = 0.0, value = 38.5)
+        Th_sil_i = st.number_input("Th (ppm)", min_value = 0.0, value = 4.0, key = 0)
+        Nb_sil_i = st.number_input("Nb (ppm)", min_value = 0.0, value = 48.0, key = 0)
+        La_sil_i = st.number_input("La (ppm)", min_value = 0.0, value = 37.0, key = 0)
+        Ce_sil_i = st.number_input("Ce (ppm)", min_value = 0.0, value = 80.0, key = 0)
+        Pr_sil_i = st.number_input("Pr (ppm)", min_value = 0.0, value = 9.7, key = 0)
+        Nd_sil_i = st.number_input("Nd (ppm)", min_value = 0.0, value = 38.5, key = 0)
     with col2_a:
-        Zr_sil_i = st.number_input("Zr (ppm)", min_value = 0.0, value = 280.0)
-        Hf_sil_i = st.number_input("Hf (ppm)", min_value = 0.0, value = 7.8)
-        Sm_sil_i = st.number_input("Sm (ppm)", min_value = 0.0, value = 10.0)
-        Eu_sil_i = st.number_input("Eu (ppm)", min_value = 0.0, value = 3.0)
-        Ti_sil_i = st.number_input("Ti (ppm)", min_value = 0.0, value = 17200.0)
-        Gd_sil_i = st.number_input("Gd (ppm)", min_value = 0.0, value = 7.62)
+        Zr_sil_i = st.number_input("Zr (ppm)", min_value = 0.0, value = 280.0, key = 0)
+        Hf_sil_i = st.number_input("Hf (ppm)", min_value = 0.0, value = 7.8, key = 0)
+        Sm_sil_i = st.number_input("Sm (ppm)", min_value = 0.0, value = 10.0, key = 0)
+        Eu_sil_i = st.number_input("Eu (ppm)", min_value = 0.0, value = 3.0, key = 0)
+        Ti_sil_i = st.number_input("Ti (ppm)", min_value = 0.0, value = 17200.0, key = 0)
+        Gd_sil_i = st.number_input("Gd (ppm)", min_value = 0.0, value = 7.62, key = 0)
     with col3_a:
-        Tb_sil_i = st.number_input("Tb (ppm)", min_value = 0.0, value = 1.05)
-        Dy_sil_i = st.number_input("Dy (ppm)", min_value = 0.0, value = 5.6)
-        Y_sil_i = st.number_input("Y (ppm)", min_value = 0.0, value = 29.0)
-        Ho_sil_i = st.number_input("Ho (ppm)", min_value = 0.0, value = 1.06)
-        Er_sil_i = st.number_input("Er (ppm)", min_value = 0.0, value = 2.62)
-        Tm_sil_i = st.number_input("Tm (ppm)", min_value = 0.0, value = 0.35)
+        Tb_sil_i = st.number_input("Tb (ppm)", min_value = 0.0, value = 1.05, key = 0)
+        Dy_sil_i = st.number_input("Dy (ppm)", min_value = 0.0, value = 5.6, key = 0)
+        Y_sil_i = st.number_input("Y (ppm)", min_value = 0.0, value = 29.0, key = 0)
+        Ho_sil_i = st.number_input("Ho (ppm)", min_value = 0.0, value = 1.06, key = 0)
+        Er_sil_i = st.number_input("Er (ppm)", min_value = 0.0, value = 2.62, key = 0)
+        Tm_sil_i = st.number_input("Tm (ppm)", min_value = 0.0, value = 0.35, key = 0)
     with col4_a:
-        Yb_sil_i = st.number_input("Yb (ppm)", min_value = 0.0, value = 2.16)
-        Lu_sil_i = st.number_input("Lu (ppm)", min_value = 0.0, value = 0.3)
-        V_sil_i = st.number_input("V (ppm)", min_value = 0.0, value = 500.0)
-        Sc_sil_i = st.number_input("Sc (ppm)", min_value = 0.0, value = 100.0)
+        Yb_sil_i = st.number_input("Yb (ppm)", min_value = 0.0, value = 2.16, key = 0)
+        Lu_sil_i = st.number_input("Lu (ppm)", min_value = 0.0, value = 0.3, key = 0)
+        V_sil_i = st.number_input("V (ppm)", min_value = 0.0, value = 500.0, key = 0)
+        Sc_sil_i = st.number_input("Sc (ppm)", min_value = 0.0, value = 100.0, key = 0)
 
 initial_melt = {
 "Elements":["Th", "Nb", "La", "Ce", "Pr", "Nd", "Zr", "Hf", "Sm", "Eu", "Ti", "Gd", "Tb", "Dy", "Y", "Ho", "Er", "Tm", "Yb", "Lu", "V", "Sc"],
@@ -54,11 +55,19 @@ initial_melt = {
 
 initial_melt_df = pd.DataFrame(data = initial_melt)
 
+st.write("")
+st.write("--------------")
+
+#####################################################################################################
+# RAYLEIGH FRACTIONAL CRYSTALLIZATION MODEL
+#####################################################################################################
+
+st.header("Rayleigh Fractional Crystallization")
+st.write("")
+
 #####################################################################################################
 # Fractionating minerals
 #####################################################################################################
-
-F_sil_remaining = np.arange(0.1, 1.0+0.001, 0.001)
 
 st.sidebar.write("**Choose the minerals that are fractionating**")
 
@@ -358,6 +367,8 @@ D_Sc_bulk = (P_Cpx * D_Sc_Cpx) + (P_Pl * D_Sc_Pl) + (P_Opx * D_Sc_Opx) + (P_Ol *
 # Residual melt calculation
 #####################################################################################################
 
+F_sil_remaining = np.arange(0.1, 1.0+0.001, 0.001)
+
 Th_sil_f = Th_sil_i * (F_sil_remaining ** (D_Th_bulk - 1))
 Nb_sil_f = Nb_sil_i * (F_sil_remaining ** (D_Nb_bulk - 1))
 La_sil_f = La_sil_i * (F_sil_remaining ** (D_La_bulk - 1))
@@ -409,126 +420,168 @@ V_sol = ((1 - (F_sil_remaining ** D_V_bulk)) / (1 - F_sil_remaining)) * V_sil_i
 Sc_sol = ((1 - (F_sil_remaining ** D_Sc_bulk)) / (1 - F_sil_remaining)) * Sc_sil_i
 
 #####################################################################################################
-# Combine model results
+# Combine RFC model results
 #####################################################################################################
 
-model_results_df = pd.DataFrame()
-model_results_df["F_sil_remaining"] = F_sil_remaining
-model_results_df["Th_sil_f"] = Th_sil_f
-model_results_df["Nb_sil_f"] = Nb_sil_f
-model_results_df["La_sil_f"] = La_sil_f
-model_results_df["Ce_sil_f"] = Ce_sil_f
-model_results_df["Pr_sil_f"] = Pr_sil_f
-model_results_df["Nd_sil_f"] = Nd_sil_f
-model_results_df["Zr_sil_f"] = Zr_sil_f
-model_results_df["Hf_sil_f"] = Hf_sil_f
-model_results_df["Sm_sil_f"] = Sm_sil_f
-model_results_df["Eu_sil_f"] = Eu_sil_f
-model_results_df["Ti_sil_f"] = Ti_sil_f
-model_results_df["Gd_sil_f"] = Gd_sil_f
-model_results_df["Tb_sil_f"] = Tb_sil_f
-model_results_df["Dy_sil_f"] = Dy_sil_f
-model_results_df["Y_sil_f"] = Y_sil_f
-model_results_df["Ho_sil_f"] = Ho_sil_f
-model_results_df["Er_sil_f"] = Er_sil_f
-model_results_df["Tm_sil_f"] = Tm_sil_f
-model_results_df["Yb_sil_f"] = Yb_sil_f
-model_results_df["Lu_sil_f"] = Lu_sil_f
-model_results_df["V_sil_f"] = V_sil_f
-model_results_df["Sc_sil_f"] = Sc_sil_f
+RFC_results_df = pd.DataFrame()
+RFC_results_df["F_sil_remaining"] = F_sil_remaining
+RFC_results_df["Th_sil_f"] = Th_sil_f
+RFC_results_df["Nb_sil_f"] = Nb_sil_f
+RFC_results_df["La_sil_f"] = La_sil_f
+RFC_results_df["Ce_sil_f"] = Ce_sil_f
+RFC_results_df["Pr_sil_f"] = Pr_sil_f
+RFC_results_df["Nd_sil_f"] = Nd_sil_f
+RFC_results_df["Zr_sil_f"] = Zr_sil_f
+RFC_results_df["Hf_sil_f"] = Hf_sil_f
+RFC_results_df["Sm_sil_f"] = Sm_sil_f
+RFC_results_df["Eu_sil_f"] = Eu_sil_f
+RFC_results_df["Ti_sil_f"] = Ti_sil_f
+RFC_results_df["Gd_sil_f"] = Gd_sil_f
+RFC_results_df["Tb_sil_f"] = Tb_sil_f
+RFC_results_df["Dy_sil_f"] = Dy_sil_f
+RFC_results_df["Y_sil_f"] = Y_sil_f
+RFC_results_df["Ho_sil_f"] = Ho_sil_f
+RFC_results_df["Er_sil_f"] = Er_sil_f
+RFC_results_df["Tm_sil_f"] = Tm_sil_f
+RFC_results_df["Yb_sil_f"] = Yb_sil_f
+RFC_results_df["Lu_sil_f"] = Lu_sil_f
+RFC_results_df["V_sil_f"] = V_sil_f
+RFC_results_df["Sc_sil_f"] = Sc_sil_f
+RFC_results_df["La_sil_f/Sm_sil_f"] = RFC_results_df.La_sil_f / RFC_results_df.Sm_sil_f
+RFC_results_df["La_sil_f/Lu_sil_f"] = RFC_results_df.La_sil_f / RFC_results_df.Lu_sil_f
+RFC_results_df["Gd_sil_f/Yb_sil_f"] = RFC_results_df.Gd_sil_f / RFC_results_df.Yb_sil_f
+RFC_results_df["Th_sil_f/Nb_sil_f"] = RFC_results_df.Th_sil_f / RFC_results_df.Nb_sil_f
+RFC_results_df["Th_sil_f/La_sil_f"] = RFC_results_df.Th_sil_f / RFC_results_df.La_sil_f
+RFC_results_df["Sc_sil_f/Lu_sil_f"] = RFC_results_df.Sc_sil_f / RFC_results_df.Lu_sil_f
 
-model_results_df["Th_sil_f_PM"] = Th_sil_f / 0.0795
-model_results_df["Nb_sil_f_PM"] = Nb_sil_f / 0.658
-model_results_df["La_sil_f_PM"] = La_sil_f / 0.648
-model_results_df["Ce_sil_f_PM"] = Ce_sil_f / 1.675
-model_results_df["Pr_sil_f_PM"] = Pr_sil_f / 0.254
-model_results_df["Nd_sil_f_PM"] = Nd_sil_f / 1.25
-model_results_df["Zr_sil_f_PM"] = Zr_sil_f / 10.5
-model_results_df["Hf_sil_f_PM"] = Hf_sil_f / 0.283
-model_results_df["Sm_sil_f_PM"] = Sm_sil_f / 0.406
-model_results_df["Eu_sil_f_PM"] = Eu_sil_f / 0.154
-model_results_df["Ti_sil_f_PM"] = Ti_sil_f / 1205
-model_results_df["Gd_sil_f_PM"] = Gd_sil_f / 0.544
-model_results_df["Tb_sil_f_PM"] = Tb_sil_f / 0.099
-model_results_df["Dy_sil_f_PM"] = Dy_sil_f / 0.674
-model_results_df["Y_sil_f_PM"] = Y_sil_f / 4.3
-model_results_df["Ho_sil_f_PM"] = Ho_sil_f / 0.149
-model_results_df["Er_sil_f_PM"] = Er_sil_f / 0.438
-model_results_df["Tm_sil_f_PM"] = Tm_sil_f / 0.068
-model_results_df["Yb_sil_f_PM"] = Yb_sil_f / 0.441
-model_results_df["Lu_sil_f_PM"] = Lu_sil_f / 0.0675
-model_results_df["V_sil_f_PM"] = V_sil_f / 82
-model_results_df["Sc_sil_f_PM"] = Sc_sil_f / 16.2
-model_results_df["La_sil_f_PM/Sm_sil_f_PM"] = model_results_df.La_sil_f_PM / model_results_df.Sm_sil_f_PM
-model_results_df["La_sil_f_PM/Lu_sil_f_PM"] = model_results_df.La_sil_f_PM / model_results_df.Lu_sil_f_PM
-model_results_df["Gd_sil_f_PM/Yb_sil_f_PM"] = model_results_df.Gd_sil_f_PM / model_results_df.Yb_sil_f_PM
-model_results_df["Th_sil_f_PM/Nb_sil_f_PM"] = model_results_df.Th_sil_f_PM / model_results_df.Nb_sil_f_PM
-model_results_df["Th_sil_f_PM/La_sil_f_PM"] = model_results_df.Th_sil_f_PM / model_results_df.La_sil_f_PM
-model_results_df["Sc_sil_f_PM/Lu_sil_f_PM"] = model_results_df.Sc_sil_f_PM / model_results_df.Lu_sil_f_PM
+RFC_results_df["Th_sil_f_PM"] = Th_sil_f / 0.0795
+RFC_results_df["Nb_sil_f_PM"] = Nb_sil_f / 0.658
+RFC_results_df["La_sil_f_PM"] = La_sil_f / 0.648
+RFC_results_df["Ce_sil_f_PM"] = Ce_sil_f / 1.675
+RFC_results_df["Pr_sil_f_PM"] = Pr_sil_f / 0.254
+RFC_results_df["Nd_sil_f_PM"] = Nd_sil_f / 1.25
+RFC_results_df["Zr_sil_f_PM"] = Zr_sil_f / 10.5
+RFC_results_df["Hf_sil_f_PM"] = Hf_sil_f / 0.283
+RFC_results_df["Sm_sil_f_PM"] = Sm_sil_f / 0.406
+RFC_results_df["Eu_sil_f_PM"] = Eu_sil_f / 0.154
+RFC_results_df["Ti_sil_f_PM"] = Ti_sil_f / 1205
+RFC_results_df["Gd_sil_f_PM"] = Gd_sil_f / 0.544
+RFC_results_df["Tb_sil_f_PM"] = Tb_sil_f / 0.099
+RFC_results_df["Dy_sil_f_PM"] = Dy_sil_f / 0.674
+RFC_results_df["Y_sil_f_PM"] = Y_sil_f / 4.3
+RFC_results_df["Ho_sil_f_PM"] = Ho_sil_f / 0.149
+RFC_results_df["Er_sil_f_PM"] = Er_sil_f / 0.438
+RFC_results_df["Tm_sil_f_PM"] = Tm_sil_f / 0.068
+RFC_results_df["Yb_sil_f_PM"] = Yb_sil_f / 0.441
+RFC_results_df["Lu_sil_f_PM"] = Lu_sil_f / 0.0675
+RFC_results_df["V_sil_f_PM"] = V_sil_f / 82
+RFC_results_df["Sc_sil_f_PM"] = Sc_sil_f / 16.2
+RFC_results_df["La_sil_f_PM/Sm_sil_f_PM"] = RFC_results_df.La_sil_f_PM / RFC_results_df.Sm_sil_f_PM
+RFC_results_df["La_sil_f_PM/Lu_sil_f_PM"] = RFC_results_df.La_sil_f_PM / RFC_results_df.Lu_sil_f_PM
+RFC_results_df["Gd_sil_f_PM/Yb_sil_f_PM"] = RFC_results_df.Gd_sil_f_PM / RFC_results_df.Yb_sil_f_PM
+RFC_results_df["Th_sil_f_PM/Nb_sil_f_PM"] = RFC_results_df.Th_sil_f_PM / RFC_results_df.Nb_sil_f_PM
+RFC_results_df["Th_sil_f_PM/La_sil_f_PM"] = RFC_results_df.Th_sil_f_PM / RFC_results_df.La_sil_f_PM
+RFC_results_df["Sc_sil_f_PM/Lu_sil_f_PM"] = RFC_results_df.Sc_sil_f_PM / RFC_results_df.Lu_sil_f_PM
 
-model_results_df["Th_sol_PM"] = Th_sol / 0.0795
-model_results_df["Nb_sol_PM"] = Nb_sol / 0.658
-model_results_df["La_sol_PM"] = La_sol / 0.648
-model_results_df["Ce_sol_PM"] = Ce_sol / 1.675
-model_results_df["Pr_sol_PM"] = Pr_sol / 0.254
-model_results_df["Nd_sol_PM"] = Nd_sol / 1.25
-model_results_df["Zr_sol_PM"] = Zr_sol / 10.5
-model_results_df["Hf_sol_PM"] = Hf_sol / 0.283
-model_results_df["Sm_sol_PM"] = Sm_sol / 0.406
-model_results_df["Eu_sol_PM"] = Eu_sol / 0.154
-model_results_df["Ti_sol_PM"] = Ti_sol / 1205
-model_results_df["Gd_sol_PM"] = Gd_sol / 0.544
-model_results_df["Tb_sol_PM"] = Tb_sol / 0.099
-model_results_df["Dy_sol_PM"] = Dy_sol / 0.674
-model_results_df["Y_sol_PM"] = Y_sol / 4.3
-model_results_df["Ho_sol_PM"] = Ho_sol / 0.149
-model_results_df["Er_sol_PM"] = Er_sol / 0.438
-model_results_df["Tm_sol_PM"] = Tm_sol / 0.068
-model_results_df["Yb_sol_PM"] = Yb_sol / 0.441
-model_results_df["Lu_sol_PM"] = Lu_sol / 0.0675
-model_results_df["V_sol_PM"] = V_sol / 82
-model_results_df["Sc_sol_PM"] = Sc_sol / 16.2
-model_results_df["La_sol_PM/Sm_sol_PM"] = model_results_df.La_sol_PM / model_results_df.Sm_sol_PM
-model_results_df["La_sol_PM/Lu_sol_PM"] = model_results_df.La_sol_PM / model_results_df.Lu_sol_PM
-model_results_df["Gd_sol_PM/Yb_sol_PM"] = model_results_df.Gd_sol_PM / model_results_df.Yb_sol_PM
-model_results_df["Th_sol_PM/Nb_sol_PM"] = model_results_df.Th_sol_PM / model_results_df.Nb_sol_PM
-model_results_df["Th_sol_PM/La_sol_PM"] = model_results_df.Th_sol_PM / model_results_df.La_sol_PM
-model_results_df["Sc_sol_PM/Lu_sol_PM"] = model_results_df.Sc_sol_PM / model_results_df.Lu_sol_PM
+RFC_results_df["Th_sol"] = Th_sol
+RFC_results_df["Nb_sol"] = Nb_sol
+RFC_results_df["La_sol"] = La_sol
+RFC_results_df["Ce_sol"] = Ce_sol
+RFC_results_df["Pr_sol"] = Pr_sol
+RFC_results_df["Nd_sol"] = Nd_sol
+RFC_results_df["Zr_sol"] = Zr_sol
+RFC_results_df["Hf_sol"] = Hf_sol
+RFC_results_df["Sm_sol"] = Sm_sol
+RFC_results_df["Eu_sol"] = Eu_sol
+RFC_results_df["Ti_sol"] = Ti_sol
+RFC_results_df["Gd_sol"] = Gd_sol
+RFC_results_df["Tb_sol"] = Tb_sol
+RFC_results_df["Dy_sol"] = Dy_sol
+RFC_results_df["Y_sol"] = Y_sol
+RFC_results_df["Ho_sol"] = Ho_sol
+RFC_results_df["Er_sol"] = Er_sol
+RFC_results_df["Tm_sol"] = Tm_sol
+RFC_results_df["Yb_sol"] = Yb_sol
+RFC_results_df["Lu_sol"] = Lu_sol
+RFC_results_df["V_sol"] = V_sol
+RFC_results_df["Sc_sol"] = Sc_sol
+RFC_results_df["La_sol/Sm_sol"] = RFC_results_df.La_sol / RFC_results_df.Sm_sol
+RFC_results_df["La_sol/Lu_sol"] = RFC_results_df.La_sol / RFC_results_df.Lu_sol
+RFC_results_df["Gd_sol/Yb_sol"] = RFC_results_df.Gd_sol / RFC_results_df.Yb_sol
+RFC_results_df["Th_sol/Nb_sol"] = RFC_results_df.Th_sol / RFC_results_df.Nb_sol
+RFC_results_df["Th_sol/La_sol"] = RFC_results_df.Th_sol / RFC_results_df.La_sol
+RFC_results_df["Sc_sol/Lu_sol"] = RFC_results_df.Sc_sol / RFC_results_df.Lu_sol
 
-model_results_df["F_sil_remaining"] = np.round(F_sil_remaining, 4)
+RFC_results_df["Th_sol_PM"] = Th_sol / 0.0795
+RFC_results_df["Nb_sol_PM"] = Nb_sol / 0.658
+RFC_results_df["La_sol_PM"] = La_sol / 0.648
+RFC_results_df["Ce_sol_PM"] = Ce_sol / 1.675
+RFC_results_df["Pr_sol_PM"] = Pr_sol / 0.254
+RFC_results_df["Nd_sol_PM"] = Nd_sol / 1.25
+RFC_results_df["Zr_sol_PM"] = Zr_sol / 10.5
+RFC_results_df["Hf_sol_PM"] = Hf_sol / 0.283
+RFC_results_df["Sm_sol_PM"] = Sm_sol / 0.406
+RFC_results_df["Eu_sol_PM"] = Eu_sol / 0.154
+RFC_results_df["Ti_sol_PM"] = Ti_sol / 1205
+RFC_results_df["Gd_sol_PM"] = Gd_sol / 0.544
+RFC_results_df["Tb_sol_PM"] = Tb_sol / 0.099
+RFC_results_df["Dy_sol_PM"] = Dy_sol / 0.674
+RFC_results_df["Y_sol_PM"] = Y_sol / 4.3
+RFC_results_df["Ho_sol_PM"] = Ho_sol / 0.149
+RFC_results_df["Er_sol_PM"] = Er_sol / 0.438
+RFC_results_df["Tm_sol_PM"] = Tm_sol / 0.068
+RFC_results_df["Yb_sol_PM"] = Yb_sol / 0.441
+RFC_results_df["Lu_sol_PM"] = Lu_sol / 0.0675
+RFC_results_df["V_sol_PM"] = V_sol / 82
+RFC_results_df["Sc_sol_PM"] = Sc_sol / 16.2
+RFC_results_df["La_sol_PM/Sm_sol_PM"] = RFC_results_df.La_sol_PM / RFC_results_df.Sm_sol_PM
+RFC_results_df["La_sol_PM/Lu_sol_PM"] = RFC_results_df.La_sol_PM / RFC_results_df.Lu_sol_PM
+RFC_results_df["Gd_sol_PM/Yb_sol_PM"] = RFC_results_df.Gd_sol_PM / RFC_results_df.Yb_sol_PM
+RFC_results_df["Th_sol_PM/Nb_sol_PM"] = RFC_results_df.Th_sol_PM / RFC_results_df.Nb_sol_PM
+RFC_results_df["Th_sol_PM/La_sol_PM"] = RFC_results_df.Th_sol_PM / RFC_results_df.La_sol_PM
+RFC_results_df["Sc_sol_PM/Lu_sol_PM"] = RFC_results_df.Sc_sol_PM / RFC_results_df.Lu_sol_PM
 
-#st.write("***Model results***")
-with st.expander("Model Results"):
-    st.dataframe(model_results_df)
+RFC_results_df["F_sil_remaining"] = np.round(F_sil_remaining, 4)
+
+with st.expander("RFC Model Results"):
+    st.dataframe(RFC_results_df)
+
+st.write("")
 
 #####################################################################################################
-# Scatter Plot
+# RFC Scatter Plot
 #####################################################################################################
 
-model_results_df_subset = model_results_df[model_results_df.F_sil_remaining.isin([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])]
+RFC_results_df_subset = RFC_results_df[RFC_results_df.F_sil_remaining.isin([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])]
 
-st.write("-----------------------")
-
-st.subheader("Graphs")
+st.subheader("RFC Graphs")
 st.write("")
 
 with st.expander("Scatter Plot"):
 
     element_list = {
+    "Th_sil_f_PM":"Th (PM) (Residual)",
+    "Nb_sil_f_PM":"Nb (PM) (Residual)",
     "La_sil_f_PM":"La (PM) (Residual)",
     "Ce_sil_f_PM":"Ce (PM) (Residual)",
     "Pr_sil_f_PM":"Pr (PM) (Residual)",
     "Nd_sil_f_PM":"Nd (PM) (Residual)",
+    "Zr_sil_f_PM":"Zr (PM) (Residual)",
+    "Hf_sil_f_PM":"Hf (PM) (Residual)",
     "Sm_sil_f_PM":"Sm (PM) (Residual)",
     "Eu_sil_f_PM":"Eu (PM) (Residual)",
+    "Ti_sil_f_PM":"Ti (PM) (Residual)",
     "Gd_sil_f_PM":"Gd (PM) (Residual)",
     "Tb_sil_f_PM":"Tb (PM) (Residual)",
     "Dy_sil_f_PM":"Dy (PM) (Residual)",
+    "Y_sil_f_PM":"Y (PM) (Residual)",
     "Ho_sil_f_PM":"Ho (PM) (Residual)",
     "Er_sil_f_PM":"Er (PM) (Residual)",
     "Tm_sil_f_PM":"Tm (PM) (Residual)",
     "Yb_sil_f_PM":"Yb (PM) (Residual)",
     "Lu_sil_f_PM":"Lu (PM) (Residual)",
+    "V_sil_f_PM":"V (PM) (Residual)",
+    "Sc_sil_f_PM":"Sc (PM) (Residual)",
     "La_sil_f_PM/Sm_sil_f_PM":"La/Sm (PM) (Residual)",
     "La_sil_f_PM/Lu_sil_f_PM":"La/Lu (PM) (Residual)",
     "Gd_sil_f_PM/Yb_sil_f_PM":"Gd/Yb (PM) (Residual)",
@@ -536,20 +589,28 @@ with st.expander("Scatter Plot"):
     "Th_sil_f_PM/La_sil_f_PM":"Th/La (PM) (Residual)",
     "Sc_sil_f_PM/Lu_sil_f_PM":"Sc/Lu (PM) (Residual)",
 
+    "Th_sol_PM":"Th (PM) (Cumulate)",
+    "Nb_sol_PM":"Nb (PM) (Cumulate)",
     "La_sol_PM":"La (PM) (Cumulate)",
     "Ce_sol_PM":"Ce (PM) (Cumulate)",
     "Pr_sol_PM":"Pr (PM) (Cumulate)",
     "Nd_sol_PM":"Nd (PM) (Cumulate)",
+    "Zr_sol_PM":"Zr (PM) (Cumulate)",
+    "Hf_sol_PM":"Hf (PM) (Cumulate)",
     "Sm_sol_PM":"Sm (PM) (Cumulate)",
     "Eu_sol_PM":"Eu (PM) (Cumulate)",
+    "Ti_sol_PM":"Ti (PM) (Cumulate)",
     "Gd_sol_PM":"Gd (PM) (Cumulate)",
     "Tb_sol_PM":"Tb (PM) (Cumulate)",
     "Dy_sol_PM":"Dy (PM) (Cumulate)",
+    "Y_sol_PM":"Y (PM) (Cumulate)",
     "Ho_sol_PM":"Ho (PM) (Cumulate)",
     "Er_sol_PM":"Er (PM) (Cumulate)",
     "Tm_sol_PM":"Tm (PM) (Cumulate)",
     "Yb_sol_PM":"Yb (PM) (Cumulate)",
     "Lu_sol_PM":"Lu (PM) (Cumulate)",
+    "V_sol_PM":"V (PM) (Cumulate)",
+    "Sc_sol_PM":"Sc (PM) (Cumulate)",
     "La_sol_PM/Sm_sol_PM":"La/Sm (PM) (Cumulate)",
     "La_sol_PM/Lu_sol_PM":"La/Lu (PM) (Cumulate)",
     "Gd_sol_PM/Yb_sol_PM":"Gd/Yb (PM) (Cumulate)",
@@ -561,44 +622,45 @@ with st.expander("Scatter Plot"):
     col1_1, col2_1 = st.columns([1,1])
 
     with col1_1:
-        X_Element_RM = st.selectbox("X-axis (Residual)", ("La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Sm_sil_f_PM", "Eu_sil_f_PM", "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM", "La_sil_f_PM/Sm_sil_f_PM", "La_sil_f_PM/Lu_sil_f_PM", "Gd_sil_f_PM/Yb_sil_f_PM", "Th_sil_f_PM/Nb_sil_f_PM", "Th_sil_f_PM/La_sil_f_PM", "Sc_sil_f_PM/Lu_sil_f_PM"),
+        X_Element_RM = st.selectbox("X-axis (Residual)", ("Th_sil_f_PM", "Nb_sil_f_PM", "La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Zr_sil_f_PM", "Hf_sil_f_PM" , "Sm_sil_f_PM", "Eu_sil_f_PM", "Ti_sil_f_PM" , "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Y_sil_f_PM" , "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM", "V_sil_f_PM", "Sc_sil_f_PM" , "La_sil_f_PM/Sm_sil_f_PM", "La_sil_f_PM/Lu_sil_f_PM", "Gd_sil_f_PM/Yb_sil_f_PM", "Th_sil_f_PM/Nb_sil_f_PM", "Th_sil_f_PM/La_sil_f_PM", "Sc_sil_f_PM/Lu_sil_f_PM"),
         format_func = element_list.get)
-        X_Element_CM = st.selectbox("X-axis (Cumulate)", ("La_sol_PM", "Ce_sol_PM", "Pr_sol_PM", "Nd_sol_PM", "Sm_sol_PM", "Eu_sol_PM", "Gd_sol_PM", "Tb_sol_PM", "Dy_sol_PM", "Ho_sol_PM", "Er_sol_PM", "Tm_sol_PM", "Yb_sol_PM", "Lu_sol_PM", "La_sol_PM/Sm_sol_PM", "La_sol_PM/Lu_sol_PM", "Gd_sol_PM/Yb_sol_PM", "Th_sol_PM/Nb_sol_PM", "Th_sol_PM/La_sol_PM", "Sc_sol_PM/Lu_sol_PM"),
+        X_Element_CM = st.selectbox("X-axis (Cumulate)", ("Th_sol_PM", "Nb_sol_PM", "La_sol_PM", "Ce_sol_PM", "Pr_sol_PM", "Nd_sol_PM", "Zr_sol_PM", "Hf_sol_PM" , "Sm_sol_PM", "Eu_sol_PM", "Ti_sol_PM" , "Gd_sol_PM", "Tb_sol_PM", "Dy_sol_PM", "Y_sol_PM" , "Ho_sol_PM", "Er_sol_PM", "Tm_sol_PM", "Yb_sol_PM", "Lu_sol_PM", "V_sol_PM", "Sc_sol_PM" , "La_sol_PM/Sm_sol_PM", "La_sol_PM/Lu_sol_PM", "Gd_sol_PM/Yb_sol_PM", "Th_sol_PM/Nb_sol_PM", "Th_sol_PM/La_sol_PM", "Sc_sol_PM/Lu_sol_PM"),
         format_func = element_list.get)
     with col2_1:
-        Y_Element_RM = st.selectbox("Y-axis (Residual)", ("La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Sm_sil_f_PM", "Eu_sil_f_PM", "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM", "La_sil_f_PM/Sm_sil_f_PM", "La_sil_f_PM/Lu_sil_f_PM", "Gd_sil_f_PM/Yb_sil_f_PM", "Th_sil_f_PM/Nb_sil_f_PM", "Th_sil_f_PM/La_sil_f_PM", "Sc_sil_f_PM/Lu_sil_f_PM"),
+        Y_Element_RM = st.selectbox("Y-axis (Residual)", ("Th_sil_f_PM", "Nb_sil_f_PM", "La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Zr_sil_f_PM", "Hf_sil_f_PM" , "Sm_sil_f_PM", "Eu_sil_f_PM", "Ti_sil_f_PM" , "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Y_sil_f_PM" , "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM", "V_sil_f_PM", "Sc_sil_f_PM" , "La_sil_f_PM/Sm_sil_f_PM", "La_sil_f_PM/Lu_sil_f_PM", "Gd_sil_f_PM/Yb_sil_f_PM", "Th_sil_f_PM/Nb_sil_f_PM", "Th_sil_f_PM/La_sil_f_PM", "Sc_sil_f_PM/Lu_sil_f_PM"),
         format_func = element_list.get)
-        Y_Element_CM = st.selectbox("Y-axis (Cumulate)", ("La_sol_PM", "Ce_sol_PM", "Pr_sol_PM", "Nd_sol_PM", "Sm_sol_PM", "Eu_sol_PM", "Gd_sol_PM", "Tb_sol_PM", "Dy_sol_PM", "Ho_sol_PM", "Er_sol_PM", "Tm_sol_PM", "Yb_sol_PM", "Lu_sol_PM", "La_sol_PM/Sm_sol_PM", "La_sol_PM/Lu_sol_PM", "Gd_sol_PM/Yb_sol_PM", "Th_sol_PM/Nb_sol_PM", "Th_sol_PM/La_sol_PM", "Sc_sol_PM/Lu_sol_PM"),
+        Y_Element_CM = st.selectbox("Y-axis (Cumulate)", ("Th_sol_PM", "Nb_sol_PM", "La_sol_PM", "Ce_sol_PM", "Pr_sol_PM", "Nd_sol_PM", "Zr_sol_PM", "Hf_sol_PM" , "Sm_sol_PM", "Eu_sol_PM", "Ti_sol_PM" , "Gd_sol_PM", "Tb_sol_PM", "Dy_sol_PM", "Y_sol_PM" , "Ho_sol_PM", "Er_sol_PM", "Tm_sol_PM", "Yb_sol_PM", "Lu_sol_PM", "V_sol_PM", "Sc_sol_PM" , "La_sol_PM/Sm_sol_PM", "La_sol_PM/Lu_sol_PM", "Gd_sol_PM/Yb_sol_PM", "Th_sol_PM/Nb_sol_PM", "Th_sol_PM/La_sol_PM", "Sc_sol_PM/Lu_sol_PM"),
         format_func = element_list.get)
 
     col1_2, col2_2 = st.columns([1, 1])
 
     with col1_2:
-        x_min_1 = st.number_input("X min", min_value = 0.0001, max_value = 1000000.0, value = 0.1, key = 3, step = 10.0)
-        x_max_1 = st.number_input("X max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 3, step = 10.0)
-        x_scale = st.selectbox("X Scale", ("linear", "log"))
+        x_min_1 = st.number_input("X min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 1, step = 10.0)
+        x_max_1 = st.number_input("X max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 1, step = 10.0)
+        x_scale_1 = st.selectbox("X Scale", ("linear", "log"), key = 0)
     with col2_2:
-        y_min_1 = st.number_input("Y min", min_value = 0.0001, max_value = 1000000.0, value = 0.1, key = 3, step = 10.0)
-        y_max_1 = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 3, step = 10.0)
-        y_scale = st.selectbox("Y Scale", ("linear", "log"))
+        y_min_1 = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 1, step = 10.0)
+        y_max_1 = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 1, step = 10.0)
+        y_scale_1 = st.selectbox("Y Scale", ("linear", "log"), key = 0)
 
     st.write("")
 
     fig1, ax = plt.subplots(1,1, figsize = (5,4))
-    ax = sns.scatterplot(data = model_results_df_subset, x = X_Element_RM, y = Y_Element_RM, color = "r", edgecolor = "k")
-    ax = sns.scatterplot(data = model_results_df_subset, x = X_Element_CM, y = Y_Element_CM, color = "None", edgecolor = "r")
+    ax = sns.scatterplot(data = RFC_results_df_subset, x = X_Element_RM, y = Y_Element_RM, hue = "F_sil_remaining", edgecolor = "k", legend = "full")
+    ax = sns.scatterplot(data = RFC_results_df_subset, x = X_Element_CM, y = Y_Element_CM, hue = "F_sil_remaining", edgecolor = "k", legend = None, marker = "s")
     ax = plt.xlabel(X_Element_RM)
     ax = plt.ylabel(Y_Element_RM)
     ax = plt.xlim(x_min_1, x_max_1)
     ax = plt.ylim(y_min_1, y_max_1)
-    ax = plt.xscale(x_scale)
-    ax = plt.yscale(y_scale)
+    ax = plt.xscale(x_scale_1)
+    ax = plt.yscale(y_scale_1)
     ax = plt.axhline(y = 1, color = "grey", linewidth = 0.5, linestyle = "--")
     ax = plt.axvline(x = 1, color = "grey", linewidth = 0.5, linestyle = "--")
+    ax = plt.legend(bbox_to_anchor = (1, 0.87), frameon = False, title = "% Sil. Remaining")
     st.write(fig1)
 
 #####################################################################################################
-# REE Diagram
+# RFC REE Diagram
 #####################################################################################################
 
 with st.expander("REE Diagram"):
@@ -614,15 +676,15 @@ with st.expander("REE Diagram"):
     x_ticks = ["La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Sm_sil_f_PM", "Eu_sil_f_PM", "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM"]
     x_tick_labels = ["La", "Ce", "Pr", "Nd", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu"]
 
-    model_results_df_melt = pd.melt(
-        model_results_df_subset,
+    RFC_results_df_melt = pd.melt(
+        RFC_results_df_subset,
         id_vars = ["F_sil_remaining"],
         value_vars = ["La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Sm_sil_f_PM", "Eu_sil_f_PM", "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM"],
         var_name = "element", value_name = "norm_conc")
 
     fig2, ax2 = plt.subplots(1, 1, figsize = (9, 5))
     ax2 = sns.lineplot(
-        data = model_results_df_melt,
+        data = RFC_results_df_melt,
         x = "element",
         y = "norm_conc",
         estimator = None, units = "F_sil_remaining", color = "r", linewidth = 1, legend = None)
@@ -635,44 +697,43 @@ with st.expander("REE Diagram"):
     st.write(fig2)
 
 #####################################################################################################
-# Spider Plot
+# RFC Spider Plot
 #####################################################################################################
 
 with st.expander("Spider Diagram"):
 
     col1_4, col2_4 = st.columns([1, 1])
     with col1_4:
-        y_min_2 = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 0.1, key = 3)
+        y_min_3 = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 0.1, key = 3)
     with col2_4:
-        y_max_2 = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 10000.0, key = 3)
+        y_max_3 = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 10000.0, key = 3)
 
     st.write("")
 
     x_ticks = ["Th_sil_f_PM", "Nb_sil_f_PM", "La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Zr_sil_f_PM", "Hf_sil_f_PM", "Sm_sil_f_PM", "Eu_sil_f_PM", "Ti_sil_f_PM", "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Y_sil_f_PM", "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM", "V_sil_f_PM", "Sc_sil_f_PM"]
     x_tick_labels = ["Th", "Nb", "La", "Ce", "Pr", "Nd", "Zr", "Hf" , "Sm", "Eu", "Ti", "Gd", "Tb", "Dy", "Y", "Ho", "Er", "Tm", "Yb", "Lu", "V", "Sc"]
 
-    model_results_df_melt = pd.melt(
-        model_results_df_subset,
+    RFC_results_df_melt = pd.melt(
+        RFC_results_df_subset,
         id_vars = ["F_sil_remaining"],
         value_vars = ["Th_sil_f_PM", "Nb_sil_f_PM", "La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Zr_sil_f_PM", "Hf_sil_f_PM", "Sm_sil_f_PM", "Eu_sil_f_PM", "Ti_sil_f_PM", "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Y_sil_f_PM", "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM", "V_sil_f_PM", "Sc_sil_f_PM"],
         var_name = "element", value_name = "norm_conc")
 
     fig3, ax3 = plt.subplots(1, 1, figsize = (9, 5))
     ax3 = sns.lineplot(
-        data = model_results_df_melt,
+        data = RFC_results_df_melt,
         x = "element",
         y = "norm_conc",
         estimator = None, units = "F_sil_remaining", color = "r", palette = "autumn", linewidth = 1, legend = None)
     ax3 = plt.yscale("log")
     ax3 = plt.xlabel("")
     ax3 = plt.ylabel("Residual Melt/Primitive Mantle")
-    ax3 = plt.ylim(y_min_2, y_max_2)
+    ax3 = plt.ylim(y_min_3, y_max_3)
     ax3 = plt.xticks(ticks = x_ticks, labels = x_tick_labels)
     ax3 = plt.axhline(y = 1, color = "grey", linewidth = 1, linestyle = "--")
     st.write(fig3)
 
-    st.write("Yellow is F = 1, Dark blue is F = 0.1.")
-    st.write("Line interval is 0.1")
+st.write("")
 
 st.write("**Note:**")
 st.write("***No amphibole-melt Kd values for Th, Nb, Zr, Y, Sc, and Hf.***")
@@ -680,6 +741,199 @@ st.write("***No garnet-melt Kd values for Th, Ti, and V.***")
 st.write("***No ilmenite-melt Kd values for Ti.***")
 
 st.write("-----------------------")
-
 st.write("")
 
+#####################################################################################################
+# SIMPLE CONTAMINATION MODEL
+#####################################################################################################
+
+st.header("Simple Contamination")
+st.write("")
+
+#####################################################################################################
+# Composition of contaminant
+#####################################################################################################
+
+with st.expander("Composition of contaminant"):
+
+    col1_a, col2_a, col3_a, col4_a = st.columns([1, 1, 1, 1])
+
+    with col1_a:
+        Th_contam = st.number_input("Th (ppm)", min_value = 0.0, value = float(), key = 4)
+        Nb_contam = st.number_input("Nb (ppm)", min_value = 0.0, value = float(), key = 4)
+        La_contam = st.number_input("La (ppm)", min_value = 0.0, value = float(), key = 4)
+        Ce_contam = st.number_input("Ce (ppm)", min_value = 0.0, value = float(), key = 4)
+        Pr_contam = st.number_input("Pr (ppm)", min_value = 0.0, value = float(), key = 4)
+        Nd_contam = st.number_input("Nd (ppm)", min_value = 0.0, value = float(), key = 4)
+    with col2_a:
+        Zr_contam = st.number_input("Zr (ppm)", min_value = 0.0, value = float(), key = 4)
+        Hf_contam = st.number_input("Hf (ppm)", min_value = 0.0, value = float(), key = 4)
+        Sm_contam = st.number_input("Sm (ppm)", min_value = 0.0, value = float(), key = 4)
+        Eu_contam = st.number_input("Eu (ppm)", min_value = 0.0, value = float(), key = 4)
+        Ti_contam = st.number_input("Ti (ppm)", min_value = 0.0, value = float(), key = 4)
+        Gd_contam = st.number_input("Gd (ppm)", min_value = 0.0, value = float(), key = 4)
+    with col3_a:
+        Tb_contam = st.number_input("Tb (ppm)", min_value = 0.0, value = float(), key = 4)
+        Dy_contam = st.number_input("Dy (ppm)", min_value = 0.0, value = float(), key = 4)
+        Y_contam = st.number_input("Y (ppm)", min_value = 0.0, value = float(), key = 4)
+        Ho_contam = st.number_input("Ho (ppm)", min_value = 0.0, value = float(), key = 4)
+        Er_contam = st.number_input("Er (ppm)", min_value = 0.0, value = float(), key = 4)
+        Tm_contam = st.number_input("Tm (ppm)", min_value = 0.0, value = float(), key = 4)
+    with col4_a:
+        Yb_contam = st.number_input("Yb (ppm)", min_value = 0.0, value = float(), key = 4)
+        Lu_contam = st.number_input("Lu (ppm)", min_value = 0.0, value = float(), key = 4)
+        V_contam = st.number_input("V (ppm)", min_value = 0.0, value = float(), key = 4)
+        Sc_contam = st.number_input("Sc (ppm)", min_value = 0.0, value = float(), key = 4)
+
+contaminant = {
+"Elements":["Th", "Nb", "La", "Ce", "Pr", "Nd", "Zr", "Hf", "Sm", "Eu", "Ti", "Gd", "Tb", "Dy", "Y", "Ho", "Er", "Tm", "Yb", "Lu", "V", "Sc"],
+"Concentration (ppm)":[Th_contam, Nb_contam, La_contam, Ce_contam, Pr_contam, Nd_contam, Zr_contam, Hf_contam, Sm_contam, Eu_contam, Ti_contam, Gd_contam, Tb_contam, Dy_contam, Y_contam, Ho_contam, Er_contam, Tm_contam, Yb_contam, Lu_contam, V_contam, Sc_contam]
+}
+
+contaminant_df = pd.DataFrame(data = contaminant)
+
+#####################################################################################################
+# Mixing calculation
+#####################################################################################################
+
+F_contam = np.arange(0.1, 1.0+0.001, 0.001)
+
+Th_melt_contam = (Th_contam * F_contam) + (Th_sil_i * (1 - F_contam))
+Nb_melt_contam = (Nb_contam * F_contam) + (Nb_sil_i * (1 - F_contam))
+La_melt_contam = (La_contam * F_contam) + (La_sil_i * (1 - F_contam))
+Ce_melt_contam = (Ce_contam * F_contam) + (Ce_sil_i * (1 - F_contam))
+Pr_melt_contam = (Pr_contam * F_contam) + (Pr_sil_i * (1 - F_contam))
+Nd_melt_contam = (Nd_contam * F_contam) + (Nd_sil_i * (1 - F_contam))
+Zr_melt_contam = (Zr_contam * F_contam) + (Zr_sil_i * (1 - F_contam))
+Hf_melt_contam = (Hf_contam * F_contam) + (Hf_sil_i * (1 - F_contam))
+Sm_melt_contam = (Sm_contam * F_contam) + (Sm_sil_i * (1 - F_contam))
+Eu_melt_contam = (Eu_contam * F_contam) + (Eu_sil_i * (1 - F_contam))
+Ti_melt_contam = (Ti_contam * F_contam) + (Ti_sil_i * (1 - F_contam))
+Gd_melt_contam = (Gd_contam * F_contam) + (Gd_sil_i * (1 - F_contam))
+Tb_melt_contam = (Tb_contam * F_contam) + (Tb_sil_i * (1 - F_contam))
+Dy_melt_contam = (Dy_contam * F_contam) + (Dy_sil_i * (1 - F_contam))
+Y_melt_contam = (Y_contam * F_contam) + (Y_sil_i * (1 - F_contam))
+Ho_melt_contam = (Ho_contam * F_contam) + (Ho_sil_i * (1 - F_contam))
+Er_melt_contam = (Er_contam * F_contam) + (Er_sil_i * (1 - F_contam))
+Tm_melt_contam = (Tm_contam * F_contam) + (Tm_sil_i * (1 - F_contam))
+Yb_melt_contam = (Yb_contam * F_contam) + (Yb_sil_i * (1 - F_contam))
+Lu_melt_contam = (Lu_contam * F_contam) + (Lu_sil_i * (1 - F_contam))
+V_melt_contam = (V_contam * F_contam) + (V_sil_i * (1 - F_contam))
+Sc_melt_contam = (Sc_contam * F_contam) + (Sc_sil_i * (1 - F_contam))
+
+#####################################################################################################
+# Combine contamination model results
+#####################################################################################################
+
+contamination_results_df = pd.DataFrame()
+contamination_results_df["F_contam"] = F_contam
+contamination_results_df["Th_melt_contam"] = Th_melt_contam
+contamination_results_df["Nb_melt_contam"] = Nb_melt_contam
+contamination_results_df["La_melt_contam"] = La_melt_contam
+contamination_results_df["Ce_melt_contam"] = Ce_melt_contam
+contamination_results_df["Pr_melt_contam"] = Pr_melt_contam
+contamination_results_df["Nd_melt_contam"] = Nd_melt_contam
+contamination_results_df["Zr_melt_contam"] = Zr_melt_contam
+contamination_results_df["Hf_melt_contam"] = Hf_melt_contam
+contamination_results_df["Sm_melt_contam"] = Sm_melt_contam
+contamination_results_df["Eu_melt_contam"] = Eu_melt_contam
+contamination_results_df["Ti_melt_contam"] = Ti_melt_contam
+contamination_results_df["Gd_melt_contam"] = Gd_melt_contam
+contamination_results_df["Tb_melt_contam"] = Tb_melt_contam
+contamination_results_df["Dy_melt_contam"] = Dy_melt_contam
+contamination_results_df["Y_melt_contam"] = Y_melt_contam
+contamination_results_df["Ho_melt_contam"] = Ho_melt_contam
+contamination_results_df["Er_melt_contam"] = Er_melt_contam
+contamination_results_df["Tm_melt_contam"] = Tm_melt_contam
+contamination_results_df["Yb_melt_contam"] = Yb_melt_contam
+contamination_results_df["Lu_melt_contam"] = Lu_melt_contam
+contamination_results_df["V_melt_contam"] = V_melt_contam
+contamination_results_df["Sc_melt_contam"] = Sc_melt_contam
+contamination_results_df["La_melt_contam/Sm_melt_contam"] = La_melt_contam / Sm_melt_contam
+contamination_results_df["La_melt_contam/Lu_melt_contam"] = La_melt_contam / Lu_melt_contam
+contamination_results_df["Gd_melt_contam/Yb_melt_contam"] = Gd_melt_contam / Yb_melt_contam
+contamination_results_df["Th_melt_contam/Nb_melt_contam"] = Th_melt_contam / Nb_melt_contam
+contamination_results_df["Th_melt_contam/La_melt_contam"] = Th_melt_contam / La_melt_contam
+contamination_results_df["Sc_melt_contam/Lu_melt_contam"] = Sc_melt_contam / Lu_melt_contam
+
+contamination_results_df["F_contam"] = np.round(F_sil_remaining, 4)
+
+with st.expander("Contamination Model Results"):
+    st.dataframe(contamination_results_df)
+
+#####################################################################################################
+# Contamination scatter plot
+#####################################################################################################
+
+
+contamination_results_df_subset = contamination_results_df[contamination_results_df.F_contam.isin([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])]
+
+st.subheader("Contamination Graphs")
+st.write("")
+
+with st.expander("Scatter Plot"):
+
+    contam_element_list = {
+    "Th_melt_contam":"Th",
+    "Nb_melt_contam":"Nb",
+    "La_melt_contam":"La",
+    "Ce_melt_contam":"Ce",
+    "Pr_melt_contam":"Pr",
+    "Nd_melt_contam":"Nd",
+    "Zr_melt_contam":"Zr",
+    "Hf_melt_contam":"Hf",
+    "Sm_melt_contam":"Sm",
+    "Eu_melt_contam":"Eu",
+    "Ti_melt_contam":"Ti",
+    "Gd_melt_contam":"Gd",
+    "Tb_melt_contam":"Tb",
+    "Dy_melt_contam":"Dy",
+    "Y_melt_contam":"Y",
+    "Ho_melt_contam":"Ho",
+    "Er_melt_contam":"Er",
+    "Tm_melt_contam":"Tm",
+    "Yb_melt_contam":"Yb",
+    "Lu_melt_contam":"Lu",
+    "V_melt_contam":"V",
+    "Sc_melt_contam":"Sc",
+    "La_melt_contam/Sm_melt_contam":"La/Sm",
+    "La_melt_contam/Lu_melt_contam":"La/Lu",
+    "Gd_melt_contam/Yb_melt_contam":"Gd/Yb",
+    "Th_melt_contam/Nb_melt_contam":"Th/Nb",
+    "Th_melt_contam/La_melt_contam":"Th/La",
+    "Sc_melt_contam/Lu_melt_contam":"Sc/Lu"
+    }
+
+    col1_1, col2_1 = st.columns([1,1])
+
+    with col1_1:
+        X_Element_contam = st.selectbox("X-axis", ("Th_melt_contam", "Nb_melt_contam", "La_melt_contam", "Ce_melt_contam", "Pr_melt_contam", "Nd_melt_contam", "Zr_melt_contam", "Hf_melt_contam" , "Sm_melt_contam", "Eu_melt_contam", "Ti_melt_contam" , "Gd_melt_contam", "Tb_melt_contam", "Dy_melt_contam", "Y_melt_contam" , "Ho_melt_contam", "Er_melt_contam", "Tm_melt_contam", "Yb_melt_contam", "Lu_melt_contam", "V_melt_contam", "Sc_melt_contam" , "La_melt_contam/Sm_melt_contam", "La_melt_contam/Lu_melt_contam", "Gd_melt_contam/Yb_melt_contam", "Th_melt_contam/Nb_melt_contam", "Th_melt_contam/La_melt_contam", "Sc_melt_contam/Lu_melt_contam"),
+        format_func = contam_element_list.get)
+    with col2_1:
+        Y_Element_contam = st.selectbox("Y-axis", ("Th_melt_contam", "Nb_melt_contam", "La_melt_contam", "Ce_melt_contam", "Pr_melt_contam", "Nd_melt_contam", "Zr_melt_contam", "Hf_melt_contam" , "Sm_melt_contam", "Eu_melt_contam", "Ti_melt_contam" , "Gd_melt_contam", "Tb_melt_contam", "Dy_melt_contam", "Y_melt_contam" , "Ho_melt_contam", "Er_melt_contam", "Tm_melt_contam", "Yb_melt_contam", "Lu_melt_contam", "V_melt_contam", "Sc_melt_contam" , "La_melt_contam/Sm_melt_contam", "La_melt_contam/Lu_melt_contam", "Gd_melt_contam/Yb_melt_contam", "Th_melt_contam/Nb_melt_contam", "Th_melt_contam/La_melt_contam", "Sc_melt_contam/Lu_melt_contam"),
+        format_func = contam_element_list.get)
+
+
+    col1_2, col2_2 = st.columns([1, 1])
+
+    with col1_2:
+        x_min_4 = st.number_input("X min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 5, step = 10.0)
+        x_max_4 = st.number_input("X max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 5, step = 10.0)
+        x_scale_4 = st.selectbox("X Scale", ("linear", "log"), key = 1)
+    with col2_2:
+        y_min_4 = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 5, step = 10.0)
+        y_max_4 = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 5, step = 10.0)
+        y_scale_4 = st.selectbox("Y Scale", ("linear", "log"), key = 1)
+
+    st.write("")
+
+    fig1, ax = plt.subplots(1,1, figsize = (5,4))
+    ax = sns.scatterplot(data = contamination_results_df_subset, x = X_Element_contam, y = Y_Element_contam, hue = "F_contam", edgecolor = "k", legend = "full")
+    ax = plt.xlabel(X_Element_contam)
+    ax = plt.ylabel(Y_Element_contam)
+    ax = plt.xlim(x_min_4, x_max_4)
+    ax = plt.ylim(y_min_4, y_max_4)
+    ax = plt.xscale(x_scale_4)
+    ax = plt.yscale(y_scale_4)
+    ax = plt.legend(bbox_to_anchor = (1.25, 0.87), frameon = False, title = "% Contam")
+    st.write(fig1)
