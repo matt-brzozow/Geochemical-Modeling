@@ -37,6 +37,8 @@ plt.rcParams["axes.unicode_minus"] = 'False'
 # Title
 #####################################################################################################
 
+st.set_page_config(page_title = "Bulk-rock Geochemical Modeler")
+
 st.title("Bulk-rock Geochemical Modeler")
 
 st.write("-------------")
