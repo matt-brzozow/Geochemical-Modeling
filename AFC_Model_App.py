@@ -1,8 +1,41 @@
+#####################################################################################################
+# Libraries
+#####################################################################################################
+
 import streamlit as st
 import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
+
+#####################################################################################################
+# Graph Parameters
+#####################################################################################################
+
+# plt.rcParams['font.serif'] = 'Times New Roman' # setting the font as time new roman
+
+plt.rcParams['font.sans-serif'] = 'Arial' # setting the font as Arial
+
+plt.rcParams['xtick.direction'] = "in"
+plt.rcParams['ytick.direction'] = "in"
+
+plt.rcParams['ytick.right'] = 'False'
+plt.rcParams['xtick.top'] = 'False'
+
+plt.rcParams['font.size'] = 12
+plt.rcParams['axes.labelsize'] = 12
+
+# plt.rcParams['axes.labelweight'] = 'bold'
+plt.rcParams['axes.titlesize'] = 12
+plt.rcParams['xtick.labelsize'] = 12
+plt.rcParams['ytick.labelsize'] = 12
+plt.rcParams['legend.fontsize'] = 12
+plt.rcParams['figure.titlesize'] = 12
+plt.rcParams["axes.unicode_minus"] = 'False'
+
+#####################################################################################################
+# Title
+#####################################################################################################
 
 st.title("Bulk-rock Geochemical Modeler")
 
@@ -546,6 +579,14 @@ RFC_results_df["F_sil_remaining"] = np.round(F_sil_remaining, 4)
 with st.expander("RFC Model Results"):
     st.dataframe(RFC_results_df)
 
+    @st.cache
+    def convert_df(df):
+        return df.to_csv().encode("utf-8")
+    
+    RFC_results_df_download = convert_df(RFC_results_df)
+
+    st.download_button(label = "Download RFC Results", data = RFC_results_df_download, file_name = "RFC_Model_Results.csv", mime = "text/csv")
+
 st.write("")
 
 #####################################################################################################
@@ -619,45 +660,41 @@ with st.expander("Scatter Plot"):
     "Sc_sol_PM/Lu_sol_PM":"Sc/Lu (PM) (Cumulate)"
     }
 
-    col1_1, col2_1 = st.columns([1,1])
+    a1, a2 = st.columns([1,1])
 
-    with col1_1:
+    with a1:
         X_Element_RM = st.selectbox("X-axis (Residual)", ("Th_sil_f_PM", "Nb_sil_f_PM", "La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Zr_sil_f_PM", "Hf_sil_f_PM" , "Sm_sil_f_PM", "Eu_sil_f_PM", "Ti_sil_f_PM" , "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Y_sil_f_PM" , "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM", "V_sil_f_PM", "Sc_sil_f_PM" , "La_sil_f_PM/Sm_sil_f_PM", "La_sil_f_PM/Lu_sil_f_PM", "Gd_sil_f_PM/Yb_sil_f_PM", "Th_sil_f_PM/Nb_sil_f_PM", "Th_sil_f_PM/La_sil_f_PM", "Sc_sil_f_PM/Lu_sil_f_PM"),
         format_func = element_list.get)
         X_Element_CM = st.selectbox("X-axis (Cumulate)", ("Th_sol_PM", "Nb_sol_PM", "La_sol_PM", "Ce_sol_PM", "Pr_sol_PM", "Nd_sol_PM", "Zr_sol_PM", "Hf_sol_PM" , "Sm_sol_PM", "Eu_sol_PM", "Ti_sol_PM" , "Gd_sol_PM", "Tb_sol_PM", "Dy_sol_PM", "Y_sol_PM" , "Ho_sol_PM", "Er_sol_PM", "Tm_sol_PM", "Yb_sol_PM", "Lu_sol_PM", "V_sol_PM", "Sc_sol_PM" , "La_sol_PM/Sm_sol_PM", "La_sol_PM/Lu_sol_PM", "Gd_sol_PM/Yb_sol_PM", "Th_sol_PM/Nb_sol_PM", "Th_sol_PM/La_sol_PM", "Sc_sol_PM/Lu_sol_PM"),
         format_func = element_list.get)
-    with col2_1:
+        x_min = st.number_input("X min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 1, step = 10.0)
+        x_max = st.number_input("X max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 1, step = 10.0)
+        x_scale = st.selectbox("X Scale", ("linear", "log"), key = 1)
+    with a2:
         Y_Element_RM = st.selectbox("Y-axis (Residual)", ("Th_sil_f_PM", "Nb_sil_f_PM", "La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Zr_sil_f_PM", "Hf_sil_f_PM" , "Sm_sil_f_PM", "Eu_sil_f_PM", "Ti_sil_f_PM" , "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Y_sil_f_PM" , "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM", "V_sil_f_PM", "Sc_sil_f_PM" , "La_sil_f_PM/Sm_sil_f_PM", "La_sil_f_PM/Lu_sil_f_PM", "Gd_sil_f_PM/Yb_sil_f_PM", "Th_sil_f_PM/Nb_sil_f_PM", "Th_sil_f_PM/La_sil_f_PM", "Sc_sil_f_PM/Lu_sil_f_PM"),
         format_func = element_list.get)
         Y_Element_CM = st.selectbox("Y-axis (Cumulate)", ("Th_sol_PM", "Nb_sol_PM", "La_sol_PM", "Ce_sol_PM", "Pr_sol_PM", "Nd_sol_PM", "Zr_sol_PM", "Hf_sol_PM" , "Sm_sol_PM", "Eu_sol_PM", "Ti_sol_PM" , "Gd_sol_PM", "Tb_sol_PM", "Dy_sol_PM", "Y_sol_PM" , "Ho_sol_PM", "Er_sol_PM", "Tm_sol_PM", "Yb_sol_PM", "Lu_sol_PM", "V_sol_PM", "Sc_sol_PM" , "La_sol_PM/Sm_sol_PM", "La_sol_PM/Lu_sol_PM", "Gd_sol_PM/Yb_sol_PM", "Th_sol_PM/Nb_sol_PM", "Th_sol_PM/La_sol_PM", "Sc_sol_PM/Lu_sol_PM"),
         format_func = element_list.get)
-
-    col1_2, col2_2 = st.columns([1, 1])
-
-    with col1_2:
-        x_min_1 = st.number_input("X min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 1, step = 10.0)
-        x_max_1 = st.number_input("X max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 1, step = 10.0)
-        x_scale_1 = st.selectbox("X Scale", ("linear", "log"), key = 0)
-    with col2_2:
-        y_min_1 = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 1, step = 10.0)
-        y_max_1 = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 1, step = 10.0)
-        y_scale_1 = st.selectbox("Y Scale", ("linear", "log"), key = 0)
+        y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 1, step = 10.0)
+        y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 1, step = 10.0)
+        y_scale = st.selectbox("Y Scale", ("linear", "log"), key = 1)
 
     st.write("")
 
-    fig1, ax = plt.subplots(1,1, figsize = (5,4))
+    fig_RFC_scatter, ax = plt.subplots(1,1, figsize = (5,4))
     ax = sns.scatterplot(data = RFC_results_df_subset, x = X_Element_RM, y = Y_Element_RM, hue = "F_sil_remaining", edgecolor = "k", legend = "full")
     ax = sns.scatterplot(data = RFC_results_df_subset, x = X_Element_CM, y = Y_Element_CM, hue = "F_sil_remaining", edgecolor = "k", legend = None, marker = "s")
     ax = plt.xlabel(X_Element_RM)
     ax = plt.ylabel(Y_Element_RM)
-    ax = plt.xlim(x_min_1, x_max_1)
-    ax = plt.ylim(y_min_1, y_max_1)
-    ax = plt.xscale(x_scale_1)
-    ax = plt.yscale(y_scale_1)
+    ax = plt.xlim(x_min, x_max)
+    ax = plt.ylim(y_min, y_max)
+    ax = plt.xscale(x_scale)
+    ax = plt.yscale(y_scale)
     ax = plt.axhline(y = 1, color = "grey", linewidth = 0.5, linestyle = "--")
     ax = plt.axvline(x = 1, color = "grey", linewidth = 0.5, linestyle = "--")
     ax = plt.legend(bbox_to_anchor = (1, 0.87), frameon = False, title = "% Sil. Remaining")
-    st.write(fig1)
+    st.write(fig_RFC_scatter)
+
 
 #####################################################################################################
 # RFC REE Diagram
@@ -665,11 +702,11 @@ with st.expander("Scatter Plot"):
 
 with st.expander("REE Diagram"):
 
-    col1_3, col2_3 = st.columns([1, 1])
-    with col1_3:
-        y_min_2 = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 0.1, key = 2)
-    with col2_3:
-        y_max_2 = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 10000.0, key = 2)
+    b1, b2 = st.columns([1, 1])
+    with b1:
+        y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 0.1, key = 2)
+    with b2:
+        y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 10000.0, key = 2)
 
     st.write("")
 
@@ -682,7 +719,7 @@ with st.expander("REE Diagram"):
         value_vars = ["La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Sm_sil_f_PM", "Eu_sil_f_PM", "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM"],
         var_name = "element", value_name = "norm_conc")
 
-    fig2, ax2 = plt.subplots(1, 1, figsize = (9, 5))
+    fig_RFC_REE, ax2 = plt.subplots(1, 1, figsize = (9, 5))
     ax2 = sns.lineplot(
         data = RFC_results_df_melt,
         x = "element",
@@ -691,10 +728,10 @@ with st.expander("REE Diagram"):
     ax2 = plt.yscale("log")
     ax2 = plt.xlabel("")
     ax2 = plt.ylabel("Residual Melt/Primitive Mantle")
-    ax2 = plt.ylim(y_min_2, y_max_2)
+    ax2 = plt.ylim(y_min, y_max)
     ax2 = plt.xticks(ticks = x_ticks, labels = x_tick_labels)
     ax2 = plt.axhline(y = 1, color = "grey", linewidth = 1, linestyle = "--")
-    st.write(fig2)
+    st.write(fig_RFC_REE)
 
 #####################################################################################################
 # RFC Spider Plot
@@ -702,11 +739,11 @@ with st.expander("REE Diagram"):
 
 with st.expander("Spider Diagram"):
 
-    col1_4, col2_4 = st.columns([1, 1])
-    with col1_4:
-        y_min_3 = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 0.1, key = 3)
-    with col2_4:
-        y_max_3 = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 10000.0, key = 3)
+    c1, c2 = st.columns([1, 1])
+    with c1:
+        y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 0.1, key = 3)
+    with c2:
+        y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 10000.0, key = 3)
 
     st.write("")
 
@@ -719,7 +756,7 @@ with st.expander("Spider Diagram"):
         value_vars = ["Th_sil_f_PM", "Nb_sil_f_PM", "La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Zr_sil_f_PM", "Hf_sil_f_PM", "Sm_sil_f_PM", "Eu_sil_f_PM", "Ti_sil_f_PM", "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Y_sil_f_PM", "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM", "V_sil_f_PM", "Sc_sil_f_PM"],
         var_name = "element", value_name = "norm_conc")
 
-    fig3, ax3 = plt.subplots(1, 1, figsize = (9, 5))
+    fig_RFC_spider, ax3 = plt.subplots(1, 1, figsize = (9, 5))
     ax3 = sns.lineplot(
         data = RFC_results_df_melt,
         x = "element",
@@ -728,17 +765,18 @@ with st.expander("Spider Diagram"):
     ax3 = plt.yscale("log")
     ax3 = plt.xlabel("")
     ax3 = plt.ylabel("Residual Melt/Primitive Mantle")
-    ax3 = plt.ylim(y_min_3, y_max_3)
+    ax3 = plt.ylim(y_min, y_max)
     ax3 = plt.xticks(ticks = x_ticks, labels = x_tick_labels)
     ax3 = plt.axhline(y = 1, color = "grey", linewidth = 1, linestyle = "--")
-    st.write(fig3)
+    st.write(fig_RFC_spider)
 
 st.write("")
 
-st.write("**Note:**")
-st.write("***No amphibole-melt Kd values for Th, Nb, Zr, Y, Sc, and Hf.***")
-st.write("***No garnet-melt Kd values for Th, Ti, and V.***")
-st.write("***No ilmenite-melt Kd values for Ti.***")
+st.caption("**Note - No amphibole-melt Kd values for Th, Nb, Zr, Y, Sc, and Hf. No garnet-melt Kd values for Th, Ti, and V. No ilmenite-melt Kd values for Ti.***")
+
+# st.markdown("***No amphibole-melt Kd values for Th, Nb, Zr, Y, Sc, and Hf.***")
+# st.write("***No garnet-melt Kd values for Th, Ti, and V.***")
+# st.write("***No ilmenite-melt Kd values for Ti.***")
 
 st.write("-----------------------")
 st.write("")
@@ -756,30 +794,30 @@ st.write("")
 
 with st.expander("Composition of contaminant"):
 
-    col1_a, col2_a, col3_a, col4_a = st.columns([1, 1, 1, 1])
+    d1, d2, d3, d4 = st.columns([1, 1, 1, 1])
 
-    with col1_a:
+    with d1:
         Th_contam = st.number_input("Th (ppm)", min_value = 0.0, value = float(), key = 4)
         Nb_contam = st.number_input("Nb (ppm)", min_value = 0.0, value = float(), key = 4)
         La_contam = st.number_input("La (ppm)", min_value = 0.0, value = float(), key = 4)
         Ce_contam = st.number_input("Ce (ppm)", min_value = 0.0, value = float(), key = 4)
         Pr_contam = st.number_input("Pr (ppm)", min_value = 0.0, value = float(), key = 4)
         Nd_contam = st.number_input("Nd (ppm)", min_value = 0.0, value = float(), key = 4)
-    with col2_a:
+    with d2:
         Zr_contam = st.number_input("Zr (ppm)", min_value = 0.0, value = float(), key = 4)
         Hf_contam = st.number_input("Hf (ppm)", min_value = 0.0, value = float(), key = 4)
         Sm_contam = st.number_input("Sm (ppm)", min_value = 0.0, value = float(), key = 4)
         Eu_contam = st.number_input("Eu (ppm)", min_value = 0.0, value = float(), key = 4)
         Ti_contam = st.number_input("Ti (ppm)", min_value = 0.0, value = float(), key = 4)
         Gd_contam = st.number_input("Gd (ppm)", min_value = 0.0, value = float(), key = 4)
-    with col3_a:
+    with d3:
         Tb_contam = st.number_input("Tb (ppm)", min_value = 0.0, value = float(), key = 4)
         Dy_contam = st.number_input("Dy (ppm)", min_value = 0.0, value = float(), key = 4)
         Y_contam = st.number_input("Y (ppm)", min_value = 0.0, value = float(), key = 4)
         Ho_contam = st.number_input("Ho (ppm)", min_value = 0.0, value = float(), key = 4)
         Er_contam = st.number_input("Er (ppm)", min_value = 0.0, value = float(), key = 4)
         Tm_contam = st.number_input("Tm (ppm)", min_value = 0.0, value = float(), key = 4)
-    with col4_a:
+    with d4:
         Yb_contam = st.number_input("Yb (ppm)", min_value = 0.0, value = float(), key = 4)
         Lu_contam = st.number_input("Lu (ppm)", min_value = 0.0, value = float(), key = 4)
         V_contam = st.number_input("V (ppm)", min_value = 0.0, value = float(), key = 4)
@@ -849,17 +887,48 @@ contamination_results_df["Yb_melt_contam"] = Yb_melt_contam
 contamination_results_df["Lu_melt_contam"] = Lu_melt_contam
 contamination_results_df["V_melt_contam"] = V_melt_contam
 contamination_results_df["Sc_melt_contam"] = Sc_melt_contam
-contamination_results_df["La_melt_contam/Sm_melt_contam"] = La_melt_contam / Sm_melt_contam
-contamination_results_df["La_melt_contam/Lu_melt_contam"] = La_melt_contam / Lu_melt_contam
-contamination_results_df["Gd_melt_contam/Yb_melt_contam"] = Gd_melt_contam / Yb_melt_contam
-contamination_results_df["Th_melt_contam/Nb_melt_contam"] = Th_melt_contam / Nb_melt_contam
-contamination_results_df["Th_melt_contam/La_melt_contam"] = Th_melt_contam / La_melt_contam
-contamination_results_df["Sc_melt_contam/Lu_melt_contam"] = Sc_melt_contam / Lu_melt_contam
+contamination_results_df["La_melt_contam/Sm_melt_contam"] = contamination_results_df.La_melt_contam / contamination_results_df.Sm_melt_contam
+contamination_results_df["La_melt_contam/Lu_melt_contam"] = contamination_results_df.La_melt_contam / contamination_results_df.Lu_melt_contam
+contamination_results_df["Gd_melt_contam/Yb_melt_contam"] = contamination_results_df.Gd_melt_contam / contamination_results_df.Yb_melt_contam
+contamination_results_df["Th_melt_contam/Nb_melt_contam"] = contamination_results_df.Th_melt_contam / contamination_results_df.Nb_melt_contam
+contamination_results_df["Th_melt_contam/La_melt_contam"] = contamination_results_df.Th_melt_contam / contamination_results_df.La_melt_contam
+contamination_results_df["Sc_melt_contam/Lu_melt_contam"] = contamination_results_df.Sc_melt_contam / contamination_results_df.Lu_melt_contam
 
-contamination_results_df["F_contam"] = np.round(F_sil_remaining, 4)
+contamination_results_df["Th_melt_contam_PM"] = Th_melt_contam / 0.0795
+contamination_results_df["Nb_melt_contam_PM"] = Nb_melt_contam / 0.658
+contamination_results_df["La_melt_contam_PM"] = La_melt_contam / 0.648
+contamination_results_df["Ce_melt_contam_PM"] = Ce_melt_contam / 1.675
+contamination_results_df["Pr_melt_contam_PM"] = Pr_melt_contam / 0.254
+contamination_results_df["Nd_melt_contam_PM"] = Nd_melt_contam / 1.25
+contamination_results_df["Zr_melt_contam_PM"] = Zr_melt_contam / 10.5
+contamination_results_df["Hf_melt_contam_PM"] = Hf_melt_contam / 0.283
+contamination_results_df["Sm_melt_contam_PM"] = Sm_melt_contam / 0.406
+contamination_results_df["Eu_melt_contam_PM"] = Eu_melt_contam / 0.154
+contamination_results_df["Ti_melt_contam_PM"] = Ti_melt_contam / 1205
+contamination_results_df["Gd_melt_contam_PM"] = Gd_melt_contam / 0.544
+contamination_results_df["Tb_melt_contam_PM"] = Tb_melt_contam / 0.099
+contamination_results_df["Dy_melt_contam_PM"] = Dy_melt_contam / 0.674
+contamination_results_df["Y_melt_contam_PM"] = Y_melt_contam / 4.3
+contamination_results_df["Ho_melt_contam_PM"] = Ho_melt_contam / 0.149
+contamination_results_df["Er_melt_contam_PM"] = Er_melt_contam / 0.438
+contamination_results_df["Tm_melt_contam_PM"] = Tm_melt_contam / 0.068
+contamination_results_df["Yb_melt_contam_PM"] = Yb_melt_contam / 0.441
+contamination_results_df["Lu_melt_contam_PM"] = Lu_melt_contam / 0.0675
+contamination_results_df["V_melt_contam_PM"] = V_melt_contam / 82
+contamination_results_df["Sc_melt_contam_PM"] = Sc_melt_contam / 16.2
+contamination_results_df["La_melt_contam_PM/Sm_melt_contam_PM"] = contamination_results_df.La_melt_contam_PM / contamination_results_df.Sm_melt_contam_PM
+contamination_results_df["La_melt_contam_PM/Lu_melt_contam_PM"] = contamination_results_df.La_melt_contam_PM / contamination_results_df.Lu_melt_contam_PM
+contamination_results_df["Gd_melt_contam_PM/Yb_melt_contam_PM"] = contamination_results_df.Gd_melt_contam_PM / contamination_results_df.Yb_melt_contam_PM
+contamination_results_df["Th_melt_contam_PM/Nb_melt_contam_PM"] = contamination_results_df.Th_melt_contam_PM / contamination_results_df.Nb_melt_contam_PM
+contamination_results_df["Th_melt_contam_PM/La_melt_contam_PM"] = contamination_results_df.Th_melt_contam_PM / contamination_results_df.La_melt_contam_PM
+contamination_results_df["Sc_melt_contam_PM/Lu_melt_contam_PM"] = contamination_results_df.Sc_melt_contam_PM / contamination_results_df.Lu_melt_contam_PM
+
+contamination_results_df["F_contam"] = np.round(F_contam, 4)
 
 with st.expander("Contamination Model Results"):
     st.dataframe(contamination_results_df)
+
+st.write("")
 
 #####################################################################################################
 # Contamination scatter plot
@@ -904,36 +973,105 @@ with st.expander("Scatter Plot"):
     "Sc_melt_contam/Lu_melt_contam":"Sc/Lu"
     }
 
-    col1_1, col2_1 = st.columns([1,1])
+    e1, e2 = st.columns([1,1])
 
-    with col1_1:
+    with e1:
         X_Element_contam = st.selectbox("X-axis", ("Th_melt_contam", "Nb_melt_contam", "La_melt_contam", "Ce_melt_contam", "Pr_melt_contam", "Nd_melt_contam", "Zr_melt_contam", "Hf_melt_contam" , "Sm_melt_contam", "Eu_melt_contam", "Ti_melt_contam" , "Gd_melt_contam", "Tb_melt_contam", "Dy_melt_contam", "Y_melt_contam" , "Ho_melt_contam", "Er_melt_contam", "Tm_melt_contam", "Yb_melt_contam", "Lu_melt_contam", "V_melt_contam", "Sc_melt_contam" , "La_melt_contam/Sm_melt_contam", "La_melt_contam/Lu_melt_contam", "Gd_melt_contam/Yb_melt_contam", "Th_melt_contam/Nb_melt_contam", "Th_melt_contam/La_melt_contam", "Sc_melt_contam/Lu_melt_contam"),
         format_func = contam_element_list.get)
-    with col2_1:
+        x_min = st.number_input("X min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 5, step = 10.0)
+        x_max = st.number_input("X max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 5, step = 10.0)
+        x_scale = st.selectbox("X Scale", ("linear", "log"), key = 5)
+    with e2:
         Y_Element_contam = st.selectbox("Y-axis", ("Th_melt_contam", "Nb_melt_contam", "La_melt_contam", "Ce_melt_contam", "Pr_melt_contam", "Nd_melt_contam", "Zr_melt_contam", "Hf_melt_contam" , "Sm_melt_contam", "Eu_melt_contam", "Ti_melt_contam" , "Gd_melt_contam", "Tb_melt_contam", "Dy_melt_contam", "Y_melt_contam" , "Ho_melt_contam", "Er_melt_contam", "Tm_melt_contam", "Yb_melt_contam", "Lu_melt_contam", "V_melt_contam", "Sc_melt_contam" , "La_melt_contam/Sm_melt_contam", "La_melt_contam/Lu_melt_contam", "Gd_melt_contam/Yb_melt_contam", "Th_melt_contam/Nb_melt_contam", "Th_melt_contam/La_melt_contam", "Sc_melt_contam/Lu_melt_contam"),
         format_func = contam_element_list.get)
-
-
-    col1_2, col2_2 = st.columns([1, 1])
-
-    with col1_2:
-        x_min_4 = st.number_input("X min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 5, step = 10.0)
-        x_max_4 = st.number_input("X max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 5, step = 10.0)
-        x_scale_4 = st.selectbox("X Scale", ("linear", "log"), key = 1)
-    with col2_2:
-        y_min_4 = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 5, step = 10.0)
-        y_max_4 = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 5, step = 10.0)
-        y_scale_4 = st.selectbox("Y Scale", ("linear", "log"), key = 1)
+        y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 5, step = 10.0)
+        y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 5, step = 10.0)
+        y_scale = st.selectbox("Y Scale", ("linear", "log"), key = 5)      
 
     st.write("")
 
-    fig1, ax = plt.subplots(1,1, figsize = (5,4))
+    fig_contam_scatter, ax = plt.subplots(1,1, figsize = (5,4))
     ax = sns.scatterplot(data = contamination_results_df_subset, x = X_Element_contam, y = Y_Element_contam, hue = "F_contam", edgecolor = "k", legend = "full")
     ax = plt.xlabel(X_Element_contam)
     ax = plt.ylabel(Y_Element_contam)
-    ax = plt.xlim(x_min_4, x_max_4)
-    ax = plt.ylim(y_min_4, y_max_4)
-    ax = plt.xscale(x_scale_4)
-    ax = plt.yscale(y_scale_4)
+    ax = plt.xlim(x_min, x_max)
+    ax = plt.ylim(y_min, y_max)
+    ax = plt.xscale(x_scale)
+    ax = plt.yscale(y_scale)
     ax = plt.legend(bbox_to_anchor = (1.25, 0.87), frameon = False, title = "% Contam")
-    st.write(fig1)
+    st.write(fig_contam_scatter)
+
+#####################################################################################################
+# Contamination REE Diagram
+#####################################################################################################
+
+with st.expander("Contamination REE Diagram"):
+
+    f1, f2 = st.columns([1, 1])
+
+    with f1:
+        y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 0.1, key = 6)
+    with f2:
+        y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 10000.0, key = 6)
+
+    st.write("")
+
+    x_ticks = ["La_melt_contam_PM", "Ce_melt_contam_PM", "Pr_melt_contam_PM", "Nd_melt_contam_PM", "Sm_melt_contam_PM", "Eu_melt_contam_PM", "Gd_melt_contam_PM", "Tb_melt_contam_PM", "Dy_melt_contam_PM", "Ho_melt_contam_PM", "Er_melt_contam_PM", "Tm_melt_contam_PM", "Yb_melt_contam_PM", "Lu_melt_contam_PM"]
+    x_tick_labels = ["La", "Ce", "Pr", "Nd", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu"]
+
+    contamination_results_df_melt = pd.melt(
+        contamination_results_df_subset,
+        id_vars = ["F_contam"],
+        value_vars = ["La_melt_contam_PM", "Ce_melt_contam_PM", "Pr_melt_contam_PM", "Nd_melt_contam_PM", "Sm_melt_contam_PM", "Eu_melt_contam_PM", "Gd_melt_contam_PM", "Tb_melt_contam_PM", "Dy_melt_contam_PM", "Ho_melt_contam_PM", "Er_melt_contam_PM", "Tm_melt_contam_PM", "Yb_melt_contam_PM", "Lu_melt_contam_PM"],
+        var_name = "element", value_name = "norm_conc")
+
+    fig_contam_REE, ax2 = plt.subplots(1, 1, figsize = (9, 5))
+    ax2 = sns.lineplot(
+        data = contamination_results_df_melt,
+        x = "element",
+        y = "norm_conc",
+        estimator = None, units = "F_contam", color = "r", linewidth = 1, legend = None)
+    ax2 = plt.yscale("log")
+    ax2 = plt.xlabel("")
+    ax2 = plt.ylabel("Residual Melt/Primitive Mantle")
+    ax2 = plt.ylim(y_min, y_max)
+    ax2 = plt.xticks(ticks = x_ticks, labels = x_tick_labels)
+    ax2 = plt.axhline(y = 1, color = "grey", linewidth = 1, linestyle = "--")
+    st.write(fig_contam_REE)
+
+#####################################################################################################
+# Contamination Spider Plot
+#####################################################################################################
+
+with st.expander("Spider Diagram"):
+
+    g1, g2 = st.columns([1, 1])
+    with g1:
+        y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 0.1, key = 7)
+    with g2:
+        y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 10000.0, key = 7)
+
+    st.write("")
+
+    x_ticks = ["Th_melt_contam_PM", "Nb_melt_contam_PM", "La_melt_contam_PM", "Ce_melt_contam_PM", "Pr_melt_contam_PM", "Nd_melt_contam_PM", "Zr_melt_contam_PM", "Hf_melt_contam_PM", "Sm_melt_contam_PM", "Eu_melt_contam_PM", "Ti_melt_contam_PM", "Gd_melt_contam_PM", "Tb_melt_contam_PM", "Dy_melt_contam_PM", "Y_melt_contam_PM", "Ho_melt_contam_PM", "Er_melt_contam_PM", "Tm_melt_contam_PM", "Yb_melt_contam_PM", "Lu_melt_contam_PM", "V_melt_contam_PM", "Sc_melt_contam_PM"]
+    x_tick_labels = ["Th", "Nb", "La", "Ce", "Pr", "Nd", "Zr", "Hf" , "Sm", "Eu", "Ti", "Gd", "Tb", "Dy", "Y", "Ho", "Er", "Tm", "Yb", "Lu", "V", "Sc"]
+
+    contamination_results_df_melt = pd.melt(
+        contamination_results_df_subset,
+        id_vars = ["F_contam"],
+        value_vars = ["Th_melt_contam_PM", "Nb_melt_contam_PM", "La_melt_contam_PM", "Ce_melt_contam_PM", "Pr_melt_contam_PM", "Nd_melt_contam_PM", "Zr_melt_contam_PM", "Hf_melt_contam_PM", "Sm_melt_contam_PM", "Eu_melt_contam_PM", "Ti_melt_contam_PM", "Gd_melt_contam_PM", "Tb_melt_contam_PM", "Dy_melt_contam_PM", "Y_melt_contam_PM", "Ho_melt_contam_PM", "Er_melt_contam_PM", "Tm_melt_contam_PM", "Yb_melt_contam_PM", "Lu_melt_contam_PM", "V_melt_contam_PM", "Sc_melt_contam_PM"],
+        var_name = "element", value_name = "norm_conc")
+
+    fig_contam_spider, ax3 = plt.subplots(1, 1, figsize = (9, 5))
+    ax3 = sns.lineplot(
+        data = contamination_results_df_melt,
+        x = "element",
+        y = "norm_conc",
+        estimator = None, units = "F_contam", color = "r", palette = "autumn", linewidth = 1, legend = None)
+    ax3 = plt.yscale("log")
+    ax3 = plt.xlabel("")
+    ax3 = plt.ylabel("Residual Melt/Primitive Mantle")
+    ax3 = plt.ylim(y_min, y_max)
+    ax3 = plt.xticks(ticks = x_ticks, labels = x_tick_labels)
+    ax3 = plt.axhline(y = 1, color = "grey", linewidth = 1, linestyle = "--")
+    st.write(fig_contam_spider)
