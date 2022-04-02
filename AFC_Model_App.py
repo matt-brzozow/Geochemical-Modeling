@@ -371,6 +371,42 @@ D_Tm_Amp = 0.64        # McKenzie and O'Nions (1991)
 D_Sc_Amp = float()
 D_Hf_Amp = float()
 
+with st.expander("Mineral-Melt Partition Coefficients"):
+    element_names = ["Th", "Nb", "La", "Ce", "Pr", "Nd", "Zr", "Hf", "Sm", "Eu", "Ti", "Gd", "Tb", "Dy", "Y", "Ho", "Er", "Tm", "Yb", "Lu", "V", "Sc"]
+    clinopyroxene = [D_Th_Cpx, D_Nb_Cpx, D_La_Cpx, D_Ce_Cpx, D_Pr_Cpx, D_Nd_Cpx, D_Zr_Cpx, D_Hf_Cpx, D_Sm_Cpx, D_Eu_Cpx, D_Ti_Cpx, D_Gd_Cpx, D_Tb_Cpx, D_Dy_Cpx, D_Y_Cpx, D_Ho_Cpx, D_Er_Cpx, D_Tm_Cpx, D_Yb_Cpx, D_Lu_Cpx, D_V_Cpx, D_Sc_Cpx]
+    plagioclase = [D_Th_Pl, D_Nb_Pl, D_La_Pl, D_Ce_Pl, D_Pr_Pl, D_Nd_Pl, D_Zr_Pl, D_Hf_Pl, D_Sm_Pl, D_Eu_Pl, D_Ti_Pl, D_Gd_Pl, D_Tb_Pl, D_Dy_Pl, D_Y_Pl, D_Ho_Pl, D_Er_Pl, D_Tm_Pl, D_Yb_Pl, D_Lu_Pl, D_V_Pl, D_Sc_Pl]
+    orthopyroxene = [D_Th_Opx, D_Nb_Opx, D_La_Opx, D_Ce_Opx, D_Pr_Opx, D_Nd_Opx, D_Zr_Opx, D_Hf_Opx, D_Sm_Opx, D_Eu_Opx, D_Ti_Opx, D_Gd_Opx, D_Tb_Opx, D_Dy_Opx, D_Y_Opx, D_Ho_Opx, D_Er_Opx, D_Tm_Opx, D_Yb_Opx, D_Lu_Opx, D_V_Opx, D_Sc_Opx]
+    olivine = [D_Th_Ol, D_Nb_Ol, D_La_Ol, D_Ce_Ol, D_Pr_Ol, D_Nd_Ol, D_Zr_Ol, D_Hf_Ol, D_Sm_Ol, D_Eu_Ol, D_Ti_Ol, D_Gd_Ol, D_Tb_Ol, D_Dy_Ol, D_Y_Ol, D_Ho_Ol, D_Er_Ol, D_Tm_Ol, D_Yb_Ol, D_Lu_Ol, D_V_Ol, D_Sc_Ol]
+    magnetite = [D_Th_Mt, D_Nb_Mt, D_La_Mt, D_Ce_Mt, D_Pr_Mt, D_Nd_Mt, D_Zr_Mt, D_Hf_Mt, D_Sm_Mt, D_Eu_Mt, D_Ti_Mt, D_Gd_Mt, D_Tb_Mt, D_Dy_Mt, D_Y_Mt, D_Ho_Mt, D_Er_Mt, D_Tm_Mt, D_Yb_Mt, D_Lu_Mt, D_V_Mt, D_Sc_Mt]
+    ilmenite = [D_Th_Ilm, D_Nb_Ilm, D_La_Ilm, D_Ce_Ilm, D_Pr_Ilm, D_Nd_Ilm, D_Zr_Ilm, D_Hf_Ilm, D_Sm_Ilm, D_Eu_Ilm, D_Ti_Ilm, D_Gd_Ilm, D_Tb_Ilm, D_Dy_Ilm, D_Y_Ilm, D_Ho_Ilm, D_Er_Ilm, D_Tm_Ilm, D_Yb_Ilm, D_Lu_Ilm, D_V_Ilm, D_Sc_Ilm]
+    apatite = [D_Th_Ap, D_Nb_Ap, D_La_Ap, D_Ce_Ap, D_Pr_Ap, D_Nd_Ap, D_Zr_Ap, D_Hf_Ap, D_Sm_Ap, D_Eu_Ap, D_Ti_Ap, D_Gd_Ap, D_Tb_Ap, D_Dy_Ap, D_Y_Ap, D_Ho_Ap, D_Er_Ap, D_Tm_Ap, D_Yb_Ap, D_Lu_Ap, D_V_Ap, D_Sc_Ap]
+    chromite = [D_Th_Chr, D_Nb_Chr, D_La_Chr, D_Ce_Chr, D_Pr_Chr, D_Nd_Chr, D_Zr_Chr, D_Hf_Chr, D_Sm_Chr, D_Eu_Chr, D_Ti_Chr, D_Gd_Chr, D_Tb_Chr, D_Dy_Chr, D_Y_Chr, D_Ho_Chr, D_Er_Chr, D_Tm_Chr, D_Yb_Chr, D_Lu_Chr, D_V_Chr, D_Sc_Chr]
+    garnet = [D_Th_Maj_gn, D_Nb_Maj_gn, D_La_Maj_gn, D_Ce_Maj_gn, D_Pr_Maj_gn, D_Nd_Maj_gn, D_Zr_Maj_gn, D_Hf_Maj_gn, D_Sm_Maj_gn, D_Eu_Maj_gn, D_Ti_Maj_gn, D_Gd_Maj_gn, D_Tb_Maj_gn, D_Dy_Maj_gn, D_Y_Maj_gn, D_Ho_Maj_gn, D_Er_Maj_gn, D_Tm_Maj_gn, D_Yb_Maj_gn, D_Lu_Maj_gn, D_V_Maj_gn, D_Sc_Maj_gn]
+    amphibole = [D_Th_Amp, D_Nb_Amp, D_La_Amp, D_Ce_Amp, D_Pr_Amp, D_Nd_Amp, D_Zr_Amp, D_Hf_Amp, D_Sm_Amp, D_Eu_Amp, D_Ti_Amp, D_Gd_Amp, D_Tb_Amp, D_Dy_Amp, D_Y_Amp, D_Ho_Amp, D_Er_Amp, D_Tm_Amp, D_Yb_Amp, D_Lu_Amp, D_V_Amp, D_Sc_Amp]
+
+    partition_coefficients_df = pd.DataFrame(list(zip(element_names, clinopyroxene, plagioclase, orthopyroxene, olivine, magnetite, ilmenite, apatite, chromite, garnet, amphibole)),
+    index = [element_names],
+    columns = ["Element", "Clinopyroxene", "Plagioclase", "Orthopyroxene", "Olivine", "Magnetite", "Ilmenite", "Apatite", "Chromite", "Garnet", "Amphibole"])
+
+    st.dataframe(partition_coefficients_df)
+
+    st.caption("Kd values for Cpx, Pl, Opx, Ol, Mt, Ilm, Ap, and Chr from Bedard et al. (2009).\
+    Kd values for Gn from Bobrov et al. (2014) and for Amp from McKenzie and O'Nions (1991).")
+
+    st.caption("Note - No amphibole-melt Kd values for Th, Nb, Zr, Y, Sc, and Hf. No garnet-melt Kd values for Th, Ti, and V. No ilmenite-melt Kd values for Ti. They default to 0.")
+
+    partition_coefficients_subset = partition_coefficients_df[partition_coefficients_df.Element.isin(["La", "Ce", "Pr", "Nd", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu"])]
+
+    mineral_kd = st.selectbox("Mineral Kd (REE)", ("Clinopyroxene", "Plagioclase", "Orthopyroxene", "Olivine", "Magnetite", "Ilmenite", "Apatite", "Chromite", "Garnet", "Amphibole"), key = 0.1)
+
+    kd_plot, ax = plt.subplots(1, 1, figsize = (9, 5))
+    ax = sns.lineplot(data = partition_coefficients_subset, x = "Element", y = mineral_kd, size = 0.5, color = "k", legend = None)
+    ax.set_ylim(bottom = 1e-4, top = 1e1)
+    ax = plt.yscale("log")
+    plt.ylabel("Mineral-Melt Partition Coefficient")
+    plt.xlabel("")
+    st.write(kd_plot)
+
 #####################################################################################################
 # Bulk partition coefficients
 #####################################################################################################
@@ -428,7 +464,7 @@ V_sil_f = V_sil_i * (F_sil_remaining ** (D_V_bulk - 1))
 Sc_sil_f = Sc_sil_i * (F_sil_remaining ** (D_Sc_bulk - 1))
 
 #####################################################################################################
-# Cumulate melt calculation
+# Cumulate calculation
 #####################################################################################################
 
 Th_sol = ((1 - (F_sil_remaining ** D_Th_bulk)) / (1 - F_sil_remaining)) * Th_sil_i
@@ -603,79 +639,79 @@ st.write("")
 with st.expander("Scatter Plot"):
 
     element_list = {
-    "Th_sil_f_PM":"Th (PM) (Residual)",
-    "Nb_sil_f_PM":"Nb (PM) (Residual)",
-    "La_sil_f_PM":"La (PM) (Residual)",
-    "Ce_sil_f_PM":"Ce (PM) (Residual)",
-    "Pr_sil_f_PM":"Pr (PM) (Residual)",
-    "Nd_sil_f_PM":"Nd (PM) (Residual)",
-    "Zr_sil_f_PM":"Zr (PM) (Residual)",
-    "Hf_sil_f_PM":"Hf (PM) (Residual)",
-    "Sm_sil_f_PM":"Sm (PM) (Residual)",
-    "Eu_sil_f_PM":"Eu (PM) (Residual)",
-    "Ti_sil_f_PM":"Ti (PM) (Residual)",
-    "Gd_sil_f_PM":"Gd (PM) (Residual)",
-    "Tb_sil_f_PM":"Tb (PM) (Residual)",
-    "Dy_sil_f_PM":"Dy (PM) (Residual)",
-    "Y_sil_f_PM":"Y (PM) (Residual)",
-    "Ho_sil_f_PM":"Ho (PM) (Residual)",
-    "Er_sil_f_PM":"Er (PM) (Residual)",
-    "Tm_sil_f_PM":"Tm (PM) (Residual)",
-    "Yb_sil_f_PM":"Yb (PM) (Residual)",
-    "Lu_sil_f_PM":"Lu (PM) (Residual)",
-    "V_sil_f_PM":"V (PM) (Residual)",
-    "Sc_sil_f_PM":"Sc (PM) (Residual)",
-    "La_sil_f_PM/Sm_sil_f_PM":"La/Sm (PM) (Residual)",
-    "La_sil_f_PM/Lu_sil_f_PM":"La/Lu (PM) (Residual)",
-    "Gd_sil_f_PM/Yb_sil_f_PM":"Gd/Yb (PM) (Residual)",
-    "Th_sil_f_PM/Nb_sil_f_PM":"Th/Nb (PM) (Residual)",
-    "Th_sil_f_PM/La_sil_f_PM":"Th/La (PM) (Residual)",
-    "Sc_sil_f_PM/Lu_sil_f_PM":"Sc/Lu (PM) (Residual)",
+    "Th_sil_f":"Th (Residual)",
+    "Nb_sil_f":"Nb (Residual)",
+    "La_sil_f":"La (Residual)",
+    "Ce_sil_f":"Ce (Residual)",
+    "Pr_sil_f":"Pr (Residual)",
+    "Nd_sil_f":"Nd (Residual)",
+    "Zr_sil_f":"Zr (Residual)",
+    "Hf_sil_f":"Hf (Residual)",
+    "Sm_sil_f":"Sm (Residual)",
+    "Eu_sil_f":"Eu (Residual)",
+    "Ti_sil_f":"Ti (Residual)",
+    "Gd_sil_f":"Gd (Residual)",
+    "Tb_sil_f":"Tb (Residual)",
+    "Dy_sil_f":"Dy (Residual)",
+    "Y_sil_f":"Y (Residual)",
+    "Ho_sil_f":"Ho (Residual)",
+    "Er_sil_f":"Er (Residual)",
+    "Tm_sil_f":"Tm (Residual)",
+    "Yb_sil_f":"Yb (Residual)",
+    "Lu_sil_f":"Lu (Residual)",
+    "V_sil_f":"V (Residual)",
+    "Sc_sil_f":"Sc (Residual)",
+    "La_sil_f/Sm_sil_f":"La/Sm (Residual)",
+    "La_sil_f/Lu_sil_f":"La/Lu (Residual)",
+    "Gd_sil_f/Yb_sil_f":"Gd/Yb (Residual)",
+    "Th_sil_f/Nb_sil_f":"Th/Nb (Residual)",
+    "Th_sil_f/La_sil_f":"Th/La (Residual)",
+    "Sc_sil_f/Lu_sil_f":"Sc/Lu (Residual)",
 
-    "Th_sol_PM":"Th (PM) (Cumulate)",
-    "Nb_sol_PM":"Nb (PM) (Cumulate)",
-    "La_sol_PM":"La (PM) (Cumulate)",
-    "Ce_sol_PM":"Ce (PM) (Cumulate)",
-    "Pr_sol_PM":"Pr (PM) (Cumulate)",
-    "Nd_sol_PM":"Nd (PM) (Cumulate)",
-    "Zr_sol_PM":"Zr (PM) (Cumulate)",
-    "Hf_sol_PM":"Hf (PM) (Cumulate)",
-    "Sm_sol_PM":"Sm (PM) (Cumulate)",
-    "Eu_sol_PM":"Eu (PM) (Cumulate)",
-    "Ti_sol_PM":"Ti (PM) (Cumulate)",
-    "Gd_sol_PM":"Gd (PM) (Cumulate)",
-    "Tb_sol_PM":"Tb (PM) (Cumulate)",
-    "Dy_sol_PM":"Dy (PM) (Cumulate)",
-    "Y_sol_PM":"Y (PM) (Cumulate)",
-    "Ho_sol_PM":"Ho (PM) (Cumulate)",
-    "Er_sol_PM":"Er (PM) (Cumulate)",
-    "Tm_sol_PM":"Tm (PM) (Cumulate)",
-    "Yb_sol_PM":"Yb (PM) (Cumulate)",
-    "Lu_sol_PM":"Lu (PM) (Cumulate)",
-    "V_sol_PM":"V (PM) (Cumulate)",
-    "Sc_sol_PM":"Sc (PM) (Cumulate)",
-    "La_sol_PM/Sm_sol_PM":"La/Sm (PM) (Cumulate)",
-    "La_sol_PM/Lu_sol_PM":"La/Lu (PM) (Cumulate)",
-    "Gd_sol_PM/Yb_sol_PM":"Gd/Yb (PM) (Cumulate)",
-    "Th_sol_PM/Nb_sol_PM":"Th/Nb (PM) (Cumulate)",
-    "Th_sol_PM/La_sol_PM":"Th/La (PM) (Cumulate)",
-    "Sc_sol_PM/Lu_sol_PM":"Sc/Lu (PM) (Cumulate)"
+    "Th_sol":"Th (Cumulate)",
+    "Nb_sol":"Nb (Cumulate)",
+    "La_sol":"La (Cumulate)",
+    "Ce_sol":"Ce (Cumulate)",
+    "Pr_sol":"Pr (Cumulate)",
+    "Nd_sol":"Nd (Cumulate)",
+    "Zr_sol":"Zr (Cumulate)",
+    "Hf_sol":"Hf (Cumulate)",
+    "Sm_sol":"Sm (Cumulate)",
+    "Eu_sol":"Eu (Cumulate)",
+    "Ti_sol":"Ti (Cumulate)",
+    "Gd_sol":"Gd (Cumulate)",
+    "Tb_sol":"Tb (Cumulate)",
+    "Dy_sol":"Dy (Cumulate)",
+    "Y_sol":"Y (Cumulate)",
+    "Ho_sol":"Ho (Cumulate)",
+    "Er_sol":"Er (Cumulate)",
+    "Tm_sol":"Tm (Cumulate)",
+    "Yb_sol":"Yb (Cumulate)",
+    "Lu_sol":"Lu (Cumulate)",
+    "V_sol":"V (Cumulate)",
+    "Sc_sol":"Sc (Cumulate)",
+    "La_sol/Sm_sol":"La/Sm (Cumulate)",
+    "La_sol/Lu_sol":"La/Lu (Cumulate)",
+    "Gd_sol/Yb_sol":"Gd/Yb (Cumulate)",
+    "Th_sol/Nb_sol":"Th/Nb (Cumulate)",
+    "Th_sol/La_sol":"Th/La (Cumulate)",
+    "Sc_sol/Lu_sol":"Sc/Lu (Cumulate)"
     }
 
     a1, a2 = st.columns([1,1])
 
     with a1:
-        X_Element_RM = st.selectbox("X-axis (Residual)", ("Th_sil_f_PM", "Nb_sil_f_PM", "La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Zr_sil_f_PM", "Hf_sil_f_PM" , "Sm_sil_f_PM", "Eu_sil_f_PM", "Ti_sil_f_PM" , "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Y_sil_f_PM" , "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM", "V_sil_f_PM", "Sc_sil_f_PM" , "La_sil_f_PM/Sm_sil_f_PM", "La_sil_f_PM/Lu_sil_f_PM", "Gd_sil_f_PM/Yb_sil_f_PM", "Th_sil_f_PM/Nb_sil_f_PM", "Th_sil_f_PM/La_sil_f_PM", "Sc_sil_f_PM/Lu_sil_f_PM"),
+        X_Element_RM = st.selectbox("X-axis (Residual)", ("Th_sil_f", "Nb_sil_f", "La_sil_f", "Ce_sil_f", "Pr_sil_f", "Nd_sil_f", "Zr_sil_f", "Hf_sil_f" , "Sm_sil_f", "Eu_sil_f", "Ti_sil_f" , "Gd_sil_f", "Tb_sil_f", "Dy_sil_f", "Y_sil_f" , "Ho_sil_f", "Er_sil_f", "Tm_sil_f", "Yb_sil_f", "Lu_sil_f", "V_sil_f", "Sc_sil_f" , "La_sil_f/Sm_sil_f", "La_sil_f/Lu_sil_f", "Gd_sil_f/Yb_sil_f", "Th_sil_f/Nb_sil_f", "Th_sil_f/La_sil_f", "Sc_sil_f/Lu_sil_f"),
         format_func = element_list.get)
-        X_Element_CM = st.selectbox("X-axis (Cumulate)", ("Th_sol_PM", "Nb_sol_PM", "La_sol_PM", "Ce_sol_PM", "Pr_sol_PM", "Nd_sol_PM", "Zr_sol_PM", "Hf_sol_PM" , "Sm_sol_PM", "Eu_sol_PM", "Ti_sol_PM" , "Gd_sol_PM", "Tb_sol_PM", "Dy_sol_PM", "Y_sol_PM" , "Ho_sol_PM", "Er_sol_PM", "Tm_sol_PM", "Yb_sol_PM", "Lu_sol_PM", "V_sol_PM", "Sc_sol_PM" , "La_sol_PM/Sm_sol_PM", "La_sol_PM/Lu_sol_PM", "Gd_sol_PM/Yb_sol_PM", "Th_sol_PM/Nb_sol_PM", "Th_sol_PM/La_sol_PM", "Sc_sol_PM/Lu_sol_PM"),
+        X_Element_CM = st.selectbox("X-axis (Cumulate)", ("Th_sol", "Nb_sol", "La_sol", "Ce_sol", "Pr_sol", "Nd_sol", "Zr_sol", "Hf_sol" , "Sm_sol", "Eu_sol", "Ti_sol" , "Gd_sol", "Tb_sol", "Dy_sol", "Y_sol" , "Ho_sol", "Er_sol", "Tm_sol", "Yb_sol", "Lu_sol", "V_sol", "Sc_sol" , "La_sol/Sm_sol", "La_sol/Lu_sol", "Gd_sol/Yb_sol", "Th_sol/Nb_sol", "Th_sol/La_sol", "Sc_sol/Lu_sol"),
         format_func = element_list.get)
         x_min = st.number_input("X min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 1, step = 10.0)
         x_max = st.number_input("X max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 1, step = 10.0)
         x_scale = st.selectbox("X Scale", ("linear", "log"), key = 1)
     with a2:
-        Y_Element_RM = st.selectbox("Y-axis (Residual)", ("Th_sil_f_PM", "Nb_sil_f_PM", "La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Zr_sil_f_PM", "Hf_sil_f_PM" , "Sm_sil_f_PM", "Eu_sil_f_PM", "Ti_sil_f_PM" , "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Y_sil_f_PM" , "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM", "V_sil_f_PM", "Sc_sil_f_PM" , "La_sil_f_PM/Sm_sil_f_PM", "La_sil_f_PM/Lu_sil_f_PM", "Gd_sil_f_PM/Yb_sil_f_PM", "Th_sil_f_PM/Nb_sil_f_PM", "Th_sil_f_PM/La_sil_f_PM", "Sc_sil_f_PM/Lu_sil_f_PM"),
+        Y_Element_RM = st.selectbox("Y-axis (Residual)", ("Th_sil_f", "Nb_sil_f", "La_sil_f", "Ce_sil_f", "Pr_sil_f", "Nd_sil_f", "Zr_sil_f", "Hf_sil_f" , "Sm_sil_f", "Eu_sil_f", "Ti_sil_f" , "Gd_sil_f", "Tb_sil_f", "Dy_sil_f", "Y_sil_f" , "Ho_sil_f", "Er_sil_f", "Tm_sil_f", "Yb_sil_f", "Lu_sil_f", "V_sil_f", "Sc_sil_f" , "La_sil_f/Sm_sil_f", "La_sil_f/Lu_sil_f", "Gd_sil_f/Yb_sil_f", "Th_sil_f/Nb_sil_f", "Th_sil_f/La_sil_f", "Sc_sil_f/Lu_sil_f"),
         format_func = element_list.get)
-        Y_Element_CM = st.selectbox("Y-axis (Cumulate)", ("Th_sol_PM", "Nb_sol_PM", "La_sol_PM", "Ce_sol_PM", "Pr_sol_PM", "Nd_sol_PM", "Zr_sol_PM", "Hf_sol_PM" , "Sm_sol_PM", "Eu_sol_PM", "Ti_sol_PM" , "Gd_sol_PM", "Tb_sol_PM", "Dy_sol_PM", "Y_sol_PM" , "Ho_sol_PM", "Er_sol_PM", "Tm_sol_PM", "Yb_sol_PM", "Lu_sol_PM", "V_sol_PM", "Sc_sol_PM" , "La_sol_PM/Sm_sol_PM", "La_sol_PM/Lu_sol_PM", "Gd_sol_PM/Yb_sol_PM", "Th_sol_PM/Nb_sol_PM", "Th_sol_PM/La_sol_PM", "Sc_sol_PM/Lu_sol_PM"),
+        Y_Element_CM = st.selectbox("Y-axis (Cumulate)", ("Th_sol", "Nb_sol", "La_sol", "Ce_sol", "Pr_sol", "Nd_sol", "Zr_sol", "Hf_sol" , "Sm_sol", "Eu_sol", "Ti_sol" , "Gd_sol", "Tb_sol", "Dy_sol", "Y_sol" , "Ho_sol", "Er_sol", "Tm_sol", "Yb_sol", "Lu_sol", "V_sol", "Sc_sol" , "La_sol/Sm_sol", "La_sol/Lu_sol", "Gd_sol/Yb_sol", "Th_sol/Nb_sol", "Th_sol/La_sol", "Sc_sol/Lu_sol"),
         format_func = element_list.get)
         y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 1, step = 10.0)
         y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 1, step = 10.0)
@@ -683,7 +719,7 @@ with st.expander("Scatter Plot"):
 
     st.write("")
 
-    fig_RFC_scatter, ax = plt.subplots(1,1, figsize = (5,4))
+    fig_RFC_scatter, ax = plt.subplots(1,1, figsize = (5, 4))
     ax = sns.scatterplot(data = RFC_results_df_subset, x = X_Element_RM, y = Y_Element_RM, hue = "F_sil_remaining", edgecolor = "k", legend = "full")
     ax = sns.scatterplot(data = RFC_results_df_subset, x = X_Element_CM, y = Y_Element_CM, hue = "F_sil_remaining", edgecolor = "k", legend = None, marker = "s")
     ax = plt.xlabel(X_Element_RM)
@@ -692,10 +728,14 @@ with st.expander("Scatter Plot"):
     ax = plt.ylim(y_min, y_max)
     ax = plt.xscale(x_scale)
     ax = plt.yscale(y_scale)
-    ax = plt.axhline(y = 1, color = "grey", linewidth = 0.5, linestyle = "--")
-    ax = plt.axvline(x = 1, color = "grey", linewidth = 0.5, linestyle = "--")
-    ax = plt.legend(bbox_to_anchor = (1, 0.87), frameon = False, title = "% Sil. Remaining")
+    ax = plt.legend(bbox_to_anchor = (1.3, 0.95), frameon = False, title = "% Melt")
     st.write(fig_RFC_scatter)
+
+    fig_RFC_scatter_DL = "RFC_Scatter.svg"
+    plt.savefig(fig_RFC_scatter_DL)
+
+    with open(fig_RFC_scatter_DL, "rb") as img:
+        btn = st.download_button(label = "Download RFC Scatter Plot", data = img, file_name = fig_RFC_scatter_DL, mime = "image/svg")
 
 
 #####################################################################################################
@@ -735,6 +775,12 @@ with st.expander("REE Diagram"):
     ax2 = plt.axhline(y = 1, color = "grey", linewidth = 1, linestyle = "--")
     st.write(fig_RFC_REE)
 
+    fig_RFC_REE_DL = "RFC_REE.svg"
+    plt.savefig(fig_RFC_REE_DL)
+
+    with open(fig_RFC_REE_DL, "rb") as img:
+        btn = st.download_button(label = "Download RFC REE Plot", data = img, file_name = fig_RFC_REE_DL, mime = "image/svg")
+
 #####################################################################################################
 # RFC Spider Plot
 #####################################################################################################
@@ -772,13 +818,13 @@ with st.expander("Spider Diagram"):
     ax3 = plt.axhline(y = 1, color = "grey", linewidth = 1, linestyle = "--")
     st.write(fig_RFC_spider)
 
-st.write("")
+    fig_RFC_spider_DL = "RFC_Spider.svg"
+    plt.savefig(fig_RFC_spider_DL)
 
-st.caption("**Note - No amphibole-melt Kd values for Th, Nb, Zr, Y, Sc, and Hf. No garnet-melt Kd values for Th, Ti, and V. No ilmenite-melt Kd values for Ti.***")
+    with open(fig_RFC_spider_DL, "rb") as img:
+        btn = st.download_button(label = "Download RFC Spider Plot", data = img, file_name = fig_RFC_spider_DL, mime = "image/svg")
 
-# st.markdown("***No amphibole-melt Kd values for Th, Nb, Zr, Y, Sc, and Hf.***")
-# st.write("***No garnet-melt Kd values for Th, Ti, and V.***")
-# st.write("***No ilmenite-melt Kd values for Ti.***")
+st.caption("Note - No amphibole-melt Kd values for Th, Nb, Zr, Y, Sc, and Hf. No garnet-melt Kd values for Th, Ti, and V. No ilmenite-melt Kd values for Ti. They default to 0.")
 
 st.write("-----------------------")
 st.write("")
@@ -1000,8 +1046,14 @@ with st.expander("Scatter Plot"):
     ax = plt.ylim(y_min, y_max)
     ax = plt.xscale(x_scale)
     ax = plt.yscale(y_scale)
-    ax = plt.legend(bbox_to_anchor = (1.25, 0.87), frameon = False, title = "% Contam")
+    ax = plt.legend(bbox_to_anchor = (1.3, 0.95), frameon = False, title = "% Contam")
     st.write(fig_contam_scatter)
+
+    fig_contam_scatter_DL = "Contamination_Scatter.svg"
+    plt.savefig(fig_contam_scatter_DL)
+
+    with open(fig_contam_scatter_DL, "rb") as img:
+        btn = st.download_button(label = "Download Contamination Scatter Plot", data = img, file_name = fig_contam_scatter_DL, mime = "image/svg")
 
 #####################################################################################################
 # Contamination REE Diagram
@@ -1041,6 +1093,12 @@ with st.expander("Contamination REE Diagram"):
     ax2 = plt.axhline(y = 1, color = "grey", linewidth = 1, linestyle = "--")
     st.write(fig_contam_REE)
 
+    fig_contam_REE_DL = "Contamination_REE.svg"
+    plt.savefig(fig_contam_REE_DL)
+
+    with open(fig_contam_REE_DL, "rb") as img:
+        btn = st.download_button(label = "Download Contamination REE Plot", data = img, file_name = fig_contam_REE_DL, mime = "image/svg")
+
 #####################################################################################################
 # Contamination Spider Plot
 #####################################################################################################
@@ -1077,3 +1135,9 @@ with st.expander("Spider Diagram"):
     ax3 = plt.xticks(ticks = x_ticks, labels = x_tick_labels)
     ax3 = plt.axhline(y = 1, color = "grey", linewidth = 1, linestyle = "--")
     st.write(fig_contam_spider)
+
+    fig_contam_spider_DL = "Contamination_Spider.svg"
+    plt.savefig(fig_contam_spider_DL)
+
+    with open(fig_contam_spider_DL, "rb") as img:
+        btn = st.download_button(label = "Download Contamination Spider Plot", data = img, file_name = fig_contam_spider_DL, mime = "image/svg")
