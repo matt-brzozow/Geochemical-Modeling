@@ -48,7 +48,6 @@ st.write("")
 # Initial melt composition
 #####################################################################################################
 
-
 st.header("Initial Composition")
 st.write("")
 
@@ -131,6 +130,7 @@ st.sidebar.write("***matt.brzozow@gmail.com***")
 #####################################################################################################
 # Partition coefficients
 #####################################################################################################
+
 
 # Partition coefficients for different minerals
 
@@ -384,28 +384,42 @@ with st.expander("Mineral-Melt Partition Coefficients"):
     garnet = [D_Th_Maj_gn, D_Nb_Maj_gn, D_La_Maj_gn, D_Ce_Maj_gn, D_Pr_Maj_gn, D_Nd_Maj_gn, D_Zr_Maj_gn, D_Hf_Maj_gn, D_Sm_Maj_gn, D_Eu_Maj_gn, D_Ti_Maj_gn, D_Gd_Maj_gn, D_Tb_Maj_gn, D_Dy_Maj_gn, D_Y_Maj_gn, D_Ho_Maj_gn, D_Er_Maj_gn, D_Tm_Maj_gn, D_Yb_Maj_gn, D_Lu_Maj_gn, D_V_Maj_gn, D_Sc_Maj_gn]
     amphibole = [D_Th_Amp, D_Nb_Amp, D_La_Amp, D_Ce_Amp, D_Pr_Amp, D_Nd_Amp, D_Zr_Amp, D_Hf_Amp, D_Sm_Amp, D_Eu_Amp, D_Ti_Amp, D_Gd_Amp, D_Tb_Amp, D_Dy_Amp, D_Y_Amp, D_Ho_Amp, D_Er_Amp, D_Tm_Amp, D_Yb_Amp, D_Lu_Amp, D_V_Amp, D_Sc_Amp]
 
-    partition_coefficients_df = pd.DataFrame(list(zip(element_names, clinopyroxene, plagioclase, orthopyroxene, olivine, magnetite, ilmenite, apatite, chromite, garnet, amphibole)),
+    kd_graph_df = pd.DataFrame(list(zip(element_names, clinopyroxene, plagioclase, orthopyroxene, olivine, magnetite, ilmenite, apatite, chromite, garnet, amphibole)),
     index = [element_names],
     columns = ["Element", "Clinopyroxene", "Plagioclase", "Orthopyroxene", "Olivine", "Magnetite", "Ilmenite", "Apatite", "Chromite", "Garnet", "Amphibole"])
 
-    st.dataframe(partition_coefficients_df)
+    st.dataframe(kd_graph_df)
 
     st.caption("Kd values for Cpx, Pl, Opx, Ol, Mt, Ilm, Ap, and Chr from Bedard et al. (2009).\
     Kd values for Gn from Bobrov et al. (2014) and for Amp from McKenzie and O'Nions (1991).")
 
     st.caption("Note - No amphibole-melt Kd values for Th, Nb, Zr, Y, Sc, and Hf. No garnet-melt Kd values for Th, Ti, and V. No ilmenite-melt Kd values for Ti. They default to 0.")
 
-    partition_coefficients_subset = partition_coefficients_df[partition_coefficients_df.Element.isin(["La", "Ce", "Pr", "Nd", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu"])]
+    # Graph mineral-melt partition coefficients
+
+    kd_graph_subset = kd_graph_df[kd_graph_df.Element.isin(["La", "Ce", "Pr", "Nd", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu"])]
 
     mineral_kd = st.selectbox("Mineral Kd (REE)", ("Clinopyroxene", "Plagioclase", "Orthopyroxene", "Olivine", "Magnetite", "Ilmenite", "Apatite", "Chromite", "Garnet", "Amphibole"), key = 0.1)
 
     kd_plot, ax = plt.subplots(1, 1, figsize = (9, 5))
-    ax = sns.lineplot(data = partition_coefficients_subset, x = "Element", y = mineral_kd, size = 0.5, color = "k", legend = None)
+    ax = sns.lineplot(data = kd_graph_subset, x = "Element", y = mineral_kd, size = 0.5, color = "k", legend = None)
     ax.set_ylim(bottom = 1e-4, top = 1e1)
     ax = plt.yscale("log")
     plt.ylabel("Mineral-Melt Partition Coefficient")
     plt.xlabel("")
     st.write(kd_plot)
+
+    # Download button for Kd data
+
+    @st.cache
+    def convert_df(df):
+        return df.to_csv().encode("utf-8")
+    
+    kd_graph_df_download = convert_df(kd_graph_df)
+
+    st.download_button(label = "Download Partition Coefficients", data = kd_graph_df_download, file_name = "Partition_Coefficients.csv", mime = "text/csv")
+
+
 
 #####################################################################################################
 # Bulk partition coefficients
@@ -614,8 +628,12 @@ RFC_results_df["Sc_sol_PM/Lu_sol_PM"] = RFC_results_df.Sc_sol_PM / RFC_results_d
 
 RFC_results_df["F_sil_remaining"] = np.round(F_sil_remaining, 4)
 
+# Dataframe for RFC model results
+
 with st.expander("RFC Model Results"):
     st.dataframe(RFC_results_df)
+
+    # Download button for RFC model results
 
     @st.cache
     def convert_df(df):
@@ -637,6 +655,8 @@ st.subheader("RFC Graphs")
 st.write("")
 
 with st.expander("Scatter Plot"):
+
+    # Changing the labels in the dropdown menu
 
     element_list = {
     "Th_sil_f":"Th (Residual)",
@@ -698,6 +718,8 @@ with st.expander("Scatter Plot"):
     "Sc_sol/Lu_sol":"Sc/Lu (Cumulate)"
     }
 
+    # Columns for graph axis formatting
+
     a1, a2 = st.columns([1,1])
 
     with a1:
@@ -731,6 +753,8 @@ with st.expander("Scatter Plot"):
     ax = plt.legend(bbox_to_anchor = (1.3, 0.95), frameon = False, title = "% Melt")
     st.write(fig_RFC_scatter)
 
+    # Download button for RFC scatter plot
+
     fig_RFC_scatter_DL = "RFC_Scatter.svg"
     plt.savefig(fig_RFC_scatter_DL)
 
@@ -744,6 +768,8 @@ with st.expander("Scatter Plot"):
 
 with st.expander("REE Diagram"):
 
+    # Columns for graph axis formatting
+
     b1, b2 = st.columns([1, 1])
     with b1:
         y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 0.1, key = 2)
@@ -751,6 +777,8 @@ with st.expander("REE Diagram"):
         y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 10000.0, key = 2)
 
     st.write("")
+
+    # Renaming x-tick labels
 
     x_ticks = ["La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Sm_sil_f_PM", "Eu_sil_f_PM", "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM"]
     x_tick_labels = ["La", "Ce", "Pr", "Nd", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu"]
@@ -775,6 +803,8 @@ with st.expander("REE Diagram"):
     ax2 = plt.axhline(y = 1, color = "grey", linewidth = 1, linestyle = "--")
     st.write(fig_RFC_REE)
 
+    # Download button for RFC REE plot
+
     fig_RFC_REE_DL = "RFC_REE.svg"
     plt.savefig(fig_RFC_REE_DL)
 
@@ -787,6 +817,8 @@ with st.expander("REE Diagram"):
 
 with st.expander("Spider Diagram"):
 
+    # Columns for graph axis parameters
+
     c1, c2 = st.columns([1, 1])
     with c1:
         y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 0.1, key = 3)
@@ -794,6 +826,8 @@ with st.expander("Spider Diagram"):
         y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 10000.0, key = 3)
 
     st.write("")
+
+    # Renaming x tick labels
 
     x_ticks = ["Th_sil_f_PM", "Nb_sil_f_PM", "La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Zr_sil_f_PM", "Hf_sil_f_PM", "Sm_sil_f_PM", "Eu_sil_f_PM", "Ti_sil_f_PM", "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Y_sil_f_PM", "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM", "V_sil_f_PM", "Sc_sil_f_PM"]
     x_tick_labels = ["Th", "Nb", "La", "Ce", "Pr", "Nd", "Zr", "Hf" , "Sm", "Eu", "Ti", "Gd", "Tb", "Dy", "Y", "Ho", "Er", "Tm", "Yb", "Lu", "V", "Sc"]
@@ -817,6 +851,8 @@ with st.expander("Spider Diagram"):
     ax3 = plt.xticks(ticks = x_ticks, labels = x_tick_labels)
     ax3 = plt.axhline(y = 1, color = "grey", linewidth = 1, linestyle = "--")
     st.write(fig_RFC_spider)
+
+    # Download button for spider plot
 
     fig_RFC_spider_DL = "RFC_Spider.svg"
     plt.savefig(fig_RFC_spider_DL)
@@ -990,6 +1026,8 @@ st.write("")
 
 with st.expander("Scatter Plot"):
 
+    # Renaming dropdown labels
+
     contam_element_list = {
     "Th_melt_contam":"Th",
     "Nb_melt_contam":"Nb",
@@ -1021,6 +1059,8 @@ with st.expander("Scatter Plot"):
     "Sc_melt_contam/Lu_melt_contam":"Sc/Lu"
     }
 
+    # Columns for axis formatting
+
     e1, e2 = st.columns([1,1])
 
     with e1:
@@ -1049,6 +1089,8 @@ with st.expander("Scatter Plot"):
     ax = plt.legend(bbox_to_anchor = (1.3, 0.95), frameon = False, title = "% Contam")
     st.write(fig_contam_scatter)
 
+    # Download button for contamination scatter plot
+
     fig_contam_scatter_DL = "Contamination_Scatter.svg"
     plt.savefig(fig_contam_scatter_DL)
 
@@ -1061,6 +1103,8 @@ with st.expander("Scatter Plot"):
 
 with st.expander("Contamination REE Diagram"):
 
+    # Columns for axis formatting
+
     f1, f2 = st.columns([1, 1])
 
     with f1:
@@ -1069,6 +1113,8 @@ with st.expander("Contamination REE Diagram"):
         y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 10000.0, key = 6)
 
     st.write("")
+
+    # Renaming x tick labels
 
     x_ticks = ["La_melt_contam_PM", "Ce_melt_contam_PM", "Pr_melt_contam_PM", "Nd_melt_contam_PM", "Sm_melt_contam_PM", "Eu_melt_contam_PM", "Gd_melt_contam_PM", "Tb_melt_contam_PM", "Dy_melt_contam_PM", "Ho_melt_contam_PM", "Er_melt_contam_PM", "Tm_melt_contam_PM", "Yb_melt_contam_PM", "Lu_melt_contam_PM"]
     x_tick_labels = ["La", "Ce", "Pr", "Nd", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu"]
@@ -1093,6 +1139,8 @@ with st.expander("Contamination REE Diagram"):
     ax2 = plt.axhline(y = 1, color = "grey", linewidth = 1, linestyle = "--")
     st.write(fig_contam_REE)
 
+    # Download button for contamination REE plot
+
     fig_contam_REE_DL = "Contamination_REE.svg"
     plt.savefig(fig_contam_REE_DL)
 
@@ -1105,6 +1153,8 @@ with st.expander("Contamination REE Diagram"):
 
 with st.expander("Spider Diagram"):
 
+    # Columns for x axis formatting
+
     g1, g2 = st.columns([1, 1])
     with g1:
         y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 0.1, key = 7)
@@ -1112,6 +1162,8 @@ with st.expander("Spider Diagram"):
         y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 10000.0, key = 7)
 
     st.write("")
+
+    # Renaming x tick labels
 
     x_ticks = ["Th_melt_contam_PM", "Nb_melt_contam_PM", "La_melt_contam_PM", "Ce_melt_contam_PM", "Pr_melt_contam_PM", "Nd_melt_contam_PM", "Zr_melt_contam_PM", "Hf_melt_contam_PM", "Sm_melt_contam_PM", "Eu_melt_contam_PM", "Ti_melt_contam_PM", "Gd_melt_contam_PM", "Tb_melt_contam_PM", "Dy_melt_contam_PM", "Y_melt_contam_PM", "Ho_melt_contam_PM", "Er_melt_contam_PM", "Tm_melt_contam_PM", "Yb_melt_contam_PM", "Lu_melt_contam_PM", "V_melt_contam_PM", "Sc_melt_contam_PM"]
     x_tick_labels = ["Th", "Nb", "La", "Ce", "Pr", "Nd", "Zr", "Hf" , "Sm", "Eu", "Ti", "Gd", "Tb", "Dy", "Y", "Ho", "Er", "Tm", "Yb", "Lu", "V", "Sc"]
@@ -1135,6 +1187,8 @@ with st.expander("Spider Diagram"):
     ax3 = plt.xticks(ticks = x_ticks, labels = x_tick_labels)
     ax3 = plt.axhline(y = 1, color = "grey", linewidth = 1, linestyle = "--")
     st.write(fig_contam_spider)
+
+    # Download button for contamination spider plot
 
     fig_contam_spider_DL = "Contamination_Spider.svg"
     plt.savefig(fig_contam_spider_DL)
