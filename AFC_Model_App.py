@@ -419,8 +419,6 @@ with st.expander("Mineral-Melt Partition Coefficients"):
 
     st.download_button(label = "Download Partition Coefficients", data = kd_graph_df_download, file_name = "Partition_Coefficients.csv", mime = "text/csv")
 
-
-
 #####################################################################################################
 # Bulk partition coefficients
 #####################################################################################################
@@ -649,7 +647,7 @@ st.write("")
 # RFC Scatter Plot
 #####################################################################################################
 
-RFC_results_df_subset = RFC_results_df[RFC_results_df.F_sil_remaining.isin([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])]
+RFC_results_df_subset = RFC_results_df[RFC_results_df.F_sil_remaining.isin([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.99])]
 
 st.subheader("RFC Graphs")
 st.write("")
@@ -753,6 +751,8 @@ with st.expander("Scatter Plot"):
     ax = plt.legend(bbox_to_anchor = (1.3, 0.95), frameon = False, title = "% Melt")
     st.write(fig_RFC_scatter)
 
+    st.write("**Circle** = Residual Melt, **Square** = Cumulate")
+
     # Download button for RFC scatter plot
 
     fig_RFC_scatter_DL = "RFC_Scatter.svg"
@@ -768,6 +768,10 @@ with st.expander("Scatter Plot"):
 
 with st.expander("REE Diagram"):
 
+    st.write("")
+
+# Residual Melt
+
     # Columns for graph axis formatting
 
     b1, b2 = st.columns([1, 1])
@@ -776,40 +780,77 @@ with st.expander("REE Diagram"):
     with b2:
         y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 10000.0, key = 2)
 
-    st.write("")
+    st.write("**Residual Melt**")
 
-    # Renaming x-tick labels
-
-    x_ticks = ["La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Sm_sil_f_PM", "Eu_sil_f_PM", "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM"]
-    x_tick_labels = ["La", "Ce", "Pr", "Nd", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu"]
-
-    RFC_results_df_melt = pd.melt(
+    RFC_results_df_melt_residual = pd.melt(
         RFC_results_df_subset,
         id_vars = ["F_sil_remaining"],
         value_vars = ["La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Sm_sil_f_PM", "Eu_sil_f_PM", "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM"],
         var_name = "element", value_name = "norm_conc")
 
-    fig_RFC_REE, ax2 = plt.subplots(1, 1, figsize = (9, 5))
+    # Renaming x-tick labels
+
+    x_ticks_residual = ["La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Sm_sil_f_PM", "Eu_sil_f_PM", "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM"]
+    x_tick_labels_residual = ["La", "Ce", "Pr", "Nd", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu"]
+
+    fig_RFC_REE_residual, ax2 = plt.subplots(1, 1, figsize = (9, 5))
     ax2 = sns.lineplot(
-        data = RFC_results_df_melt,
+        data = RFC_results_df_melt_residual,
         x = "element",
         y = "norm_conc",
-        estimator = None, units = "F_sil_remaining", color = "r", linewidth = 1, legend = None)
+        estimator = None, units = "F_sil_remaining", linewidth = 1, hue = "F_sil_remaining", legend = None)
     ax2 = plt.yscale("log")
     ax2 = plt.xlabel("")
     ax2 = plt.ylabel("Residual Melt/Primitive Mantle")
     ax2 = plt.ylim(y_min, y_max)
-    ax2 = plt.xticks(ticks = x_ticks, labels = x_tick_labels)
+    ax2 = plt.xticks(ticks = x_ticks_residual, labels = x_tick_labels_residual)
     ax2 = plt.axhline(y = 1, color = "grey", linewidth = 1, linestyle = "--")
-    st.write(fig_RFC_REE)
+    st.write(fig_RFC_REE_residual)
 
-    # Download button for RFC REE plot
+    # Download button for RFC REE plot - Residual Melt
 
-    fig_RFC_REE_DL = "RFC_REE.svg"
-    plt.savefig(fig_RFC_REE_DL)
+    fig_RFC_REE_Residual_Melt = "RFC_REE_Residual_Melt.svg"
+    plt.savefig(fig_RFC_REE_Residual_Melt)
 
-    with open(fig_RFC_REE_DL, "rb") as img:
-        btn = st.download_button(label = "Download RFC REE Plot", data = img, file_name = fig_RFC_REE_DL, mime = "image/svg")
+    with open(fig_RFC_REE_Residual_Melt, "rb") as img:
+        btn = st.download_button(label = "Download Residual Melt Model Results", data = img, file_name = fig_RFC_REE_Residual_Melt, mime = "image/svg")
+
+# Cumulate
+
+    st.write("**Cumulate**")
+
+    RFC_results_df_melt_cumulate = pd.melt(
+        RFC_results_df_subset,
+        id_vars = ["F_sil_remaining"],
+        value_vars = ["La_sol_PM", "Ce_sol_PM", "Pr_sol_PM", "Nd_sol_PM", "Sm_sol_PM", "Eu_sol_PM", "Gd_sol_PM", "Tb_sol_PM", "Dy_sol_PM", "Ho_sol_PM", "Er_sol_PM", "Tm_sol_PM", "Yb_sol_PM", "Lu_sol_PM"],
+        var_name = "element", value_name = "norm_conc")
+
+    # Renaming x-tick labels
+
+    x_ticks_cumulate = ["La_sol_PM", "Ce_sol_PM", "Pr_sol_PM", "Nd_sol_PM", "Sm_sol_PM", "Eu_sol_PM", "Gd_sol_PM", "Tb_sol_PM", "Dy_sol_PM", "Ho_sol_PM", "Er_sol_PM", "Tm_sol_PM", "Yb_sol_PM", "Lu_sol_PM"]
+    x_tick_labels_cumulate = ["La", "Ce", "Pr", "Nd", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu"]
+
+    fig_RFC_REE_cumulate, ax2 = plt.subplots(1, 1, figsize = (9, 5))
+    ax2 = sns.lineplot(
+        data = RFC_results_df_melt_cumulate,
+        x = "element",
+        y = "norm_conc",
+        estimator = None, units = "F_sil_remaining", linewidth = 1, hue = "F_sil_remaining", legend = None)
+    ax2 = plt.yscale("log")
+    ax2 = plt.xlabel("")
+    ax2 = plt.ylabel("Cumulate/Primitive Mantle")
+    ax2 = plt.ylim(y_min, y_max)
+    ax2 = plt.xticks(ticks = x_ticks_cumulate, labels = x_tick_labels_cumulate)
+    ax2 = plt.axhline(y = 1, color = "grey", linewidth = 1, linestyle = "--")
+    st.write(fig_RFC_REE_cumulate)
+
+    # Download button for RFC REE plot - Residual Melt
+
+    fig_RFC_REE_Cumulate = "RFC_REE_Cumulate.svg"
+    plt.savefig(fig_RFC_REE_Cumulate)
+
+    with open(fig_RFC_REE_Cumulate, "rb") as img:
+        btn = st.download_button(label = "Download Cumulate Model Results", data = img, file_name = fig_RFC_REE_Cumulate, mime = "image/svg")
 
 #####################################################################################################
 # RFC Spider Plot
@@ -827,38 +868,79 @@ with st.expander("Spider Diagram"):
 
     st.write("")
 
+# Residual Melt
+
+    st.write("**Residual Melt**")
+
     # Renaming x tick labels
 
-    x_ticks = ["Th_sil_f_PM", "Nb_sil_f_PM", "La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Zr_sil_f_PM", "Hf_sil_f_PM", "Sm_sil_f_PM", "Eu_sil_f_PM", "Ti_sil_f_PM", "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Y_sil_f_PM", "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM", "V_sil_f_PM", "Sc_sil_f_PM"]
-    x_tick_labels = ["Th", "Nb", "La", "Ce", "Pr", "Nd", "Zr", "Hf" , "Sm", "Eu", "Ti", "Gd", "Tb", "Dy", "Y", "Ho", "Er", "Tm", "Yb", "Lu", "V", "Sc"]
+    x_ticks_residual = ["Th_sil_f_PM", "Nb_sil_f_PM", "La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Zr_sil_f_PM", "Hf_sil_f_PM", "Sm_sil_f_PM", "Eu_sil_f_PM", "Ti_sil_f_PM", "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Y_sil_f_PM", "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM", "V_sil_f_PM", "Sc_sil_f_PM"]
+    x_tick_labels_residual = ["Th", "Nb", "La", "Ce", "Pr", "Nd", "Zr", "Hf" , "Sm", "Eu", "Ti", "Gd", "Tb", "Dy", "Y", "Ho", "Er", "Tm", "Yb", "Lu", "V", "Sc"]
 
-    RFC_results_df_melt = pd.melt(
+    RFC_results_df_melt_residual = pd.melt(
         RFC_results_df_subset,
         id_vars = ["F_sil_remaining"],
         value_vars = ["Th_sil_f_PM", "Nb_sil_f_PM", "La_sil_f_PM", "Ce_sil_f_PM", "Pr_sil_f_PM", "Nd_sil_f_PM", "Zr_sil_f_PM", "Hf_sil_f_PM", "Sm_sil_f_PM", "Eu_sil_f_PM", "Ti_sil_f_PM", "Gd_sil_f_PM", "Tb_sil_f_PM", "Dy_sil_f_PM", "Y_sil_f_PM", "Ho_sil_f_PM", "Er_sil_f_PM", "Tm_sil_f_PM", "Yb_sil_f_PM", "Lu_sil_f_PM", "V_sil_f_PM", "Sc_sil_f_PM"],
         var_name = "element", value_name = "norm_conc")
 
-    fig_RFC_spider, ax3 = plt.subplots(1, 1, figsize = (9, 5))
+    fig_RFC_spider_residual, ax3 = plt.subplots(1, 1, figsize = (9, 5))
     ax3 = sns.lineplot(
-        data = RFC_results_df_melt,
+        data = RFC_results_df_melt_residual,
         x = "element",
         y = "norm_conc",
-        estimator = None, units = "F_sil_remaining", color = "r", palette = "autumn", linewidth = 1, legend = None)
+        estimator = None, units = "F_sil_remaining", hue = "F_sil_remaining", linewidth = 1, legend = None)
     ax3 = plt.yscale("log")
     ax3 = plt.xlabel("")
     ax3 = plt.ylabel("Residual Melt/Primitive Mantle")
     ax3 = plt.ylim(y_min, y_max)
-    ax3 = plt.xticks(ticks = x_ticks, labels = x_tick_labels)
+    ax3 = plt.xticks(ticks = x_ticks_residual, labels = x_tick_labels_residual)
     ax3 = plt.axhline(y = 1, color = "grey", linewidth = 1, linestyle = "--")
-    st.write(fig_RFC_spider)
+    st.write(fig_RFC_spider_residual)
 
     # Download button for spider plot
 
-    fig_RFC_spider_DL = "RFC_Spider.svg"
-    plt.savefig(fig_RFC_spider_DL)
+    fig_RFC_spider_Residual_Melt = "RFC_Spider_Residual_Melt.svg"
+    plt.savefig(fig_RFC_spider_Residual_Melt)
 
-    with open(fig_RFC_spider_DL, "rb") as img:
-        btn = st.download_button(label = "Download RFC Spider Plot", data = img, file_name = fig_RFC_spider_DL, mime = "image/svg")
+    with open(fig_RFC_spider_Residual_Melt, "rb") as img:
+        btn = st.download_button(label = "Download Residual Melt Model Results", data = img, file_name = fig_RFC_spider_Residual_Melt, mime = "image/svg")
+
+# Cumulate
+
+    st.write("**Cumulate**")
+
+    # Renaming x tick labels
+
+    x_ticks_cumulate = ["Th_sol_PM", "Nb_sol_PM", "La_sol_PM", "Ce_sol_PM", "Pr_sol_PM", "Nd_sol_PM", "Zr_sol_PM", "Hf_sol_PM", "Sm_sol_PM", "Eu_sol_PM", "Ti_sol_PM", "Gd_sol_PM", "Tb_sol_PM", "Dy_sol_PM", "Y_sol_PM", "Ho_sol_PM", "Er_sol_PM", "Tm_sol_PM", "Yb_sol_PM", "Lu_sol_PM", "V_sol_PM", "Sc_sol_PM"]
+    x_tick_labels_cumulate = ["Th", "Nb", "La", "Ce", "Pr", "Nd", "Zr", "Hf" , "Sm", "Eu", "Ti", "Gd", "Tb", "Dy", "Y", "Ho", "Er", "Tm", "Yb", "Lu", "V", "Sc"]
+
+    RFC_results_df_melt_cumulate = pd.melt(
+        RFC_results_df_subset,
+        id_vars = ["F_sil_remaining"],
+        value_vars = ["Th_sol_PM", "Nb_sol_PM", "La_sol_PM", "Ce_sol_PM", "Pr_sol_PM", "Nd_sol_PM", "Zr_sol_PM", "Hf_sol_PM", "Sm_sol_PM", "Eu_sol_PM", "Ti_sol_PM", "Gd_sol_PM", "Tb_sol_PM", "Dy_sol_PM", "Y_sol_PM", "Ho_sol_PM", "Er_sol_PM", "Tm_sol_PM", "Yb_sol_PM", "Lu_sol_PM", "V_sol_PM", "Sc_sol_PM"],
+        var_name = "element", value_name = "norm_conc")
+
+    fig_RFC_spider_cumulate, ax3 = plt.subplots(1, 1, figsize = (9, 5))
+    ax3 = sns.lineplot(
+        data = RFC_results_df_melt_cumulate,
+        x = "element",
+        y = "norm_conc",
+        estimator = None, units = "F_sil_remaining", hue = "F_sil_remaining", linewidth = 1, legend = None)
+    ax3 = plt.yscale("log")
+    ax3 = plt.xlabel("")
+    ax3 = plt.ylabel("Cumulate/Primitive Mantle")
+    ax3 = plt.ylim(y_min, y_max)
+    ax3 = plt.xticks(ticks = x_ticks_cumulate, labels = x_tick_labels_cumulate)
+    ax3 = plt.axhline(y = 1, color = "grey", linewidth = 1, linestyle = "--")
+    st.write(fig_RFC_spider_cumulate)
+
+    # Download button for spider plot
+
+    fig_RFC_spider_Cumulate = "RFC_Spider_Cumulate.svg"
+    plt.savefig(fig_RFC_spider_Cumulate)
+
+    with open(fig_RFC_spider_Cumulate, "rb") as img:
+        btn = st.download_button(label = "Download Cumulate Model Results", data = img, file_name = fig_RFC_spider_Cumulate, mime = "image/svg")
 
 st.caption("Note - No amphibole-melt Kd values for Th, Nb, Zr, Y, Sc, and Hf. No garnet-melt Kd values for Th, Ti, and V. No ilmenite-melt Kd values for Ti. They default to 0.")
 
@@ -1130,7 +1212,7 @@ with st.expander("Contamination REE Diagram"):
         data = contamination_results_df_melt,
         x = "element",
         y = "norm_conc",
-        estimator = None, units = "F_contam", color = "r", linewidth = 1, legend = None)
+        estimator = None, units = "F_contam", linewidth = 1, hue = "F_sil_remaining", legend = None)
     ax2 = plt.yscale("log")
     ax2 = plt.xlabel("")
     ax2 = plt.ylabel("Residual Melt/Primitive Mantle")
@@ -1179,7 +1261,7 @@ with st.expander("Spider Diagram"):
         data = contamination_results_df_melt,
         x = "element",
         y = "norm_conc",
-        estimator = None, units = "F_contam", color = "r", palette = "autumn", linewidth = 1, legend = None)
+        estimator = None, units = "F_contam", hue = "F_sil_remaining", linewidth = 1, legend = None)
     ax3 = plt.yscale("log")
     ax3 = plt.xlabel("")
     ax3 = plt.ylabel("Residual Melt/Primitive Mantle")
