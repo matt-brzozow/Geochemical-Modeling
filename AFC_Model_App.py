@@ -1,3 +1,5 @@
+st.set_page_config(page_title = "Fractionation and Contamination Modeler")
+
 #####################################################################################################
 # Libraries
 #####################################################################################################
@@ -37,9 +39,7 @@ plt.rcParams["axes.unicode_minus"] = 'False'
 # Title
 #####################################################################################################
 
-st.set_page_config(page_title = "Bulk-rock Geochemical Modeler")
-
-st.title("Bulk-rock Geochemical Modeler")
+st.title("Fractionation and Contamination Modeler")
 
 st.write("-------------")
 st.write("")
