@@ -1212,7 +1212,7 @@ with st.expander("Contamination REE Diagram"):
         data = contamination_results_df_melt,
         x = "element",
         y = "norm_conc",
-        estimator = None, units = "F_contam", linewidth = 1, hue = "F_sil_remaining", legend = None)
+        estimator = None, units = "F_contam", linewidth = 1, hue = "F_contam", legend = None)
     ax2 = plt.yscale("log")
     ax2 = plt.xlabel("")
     ax2 = plt.ylabel("Residual Melt/Primitive Mantle")
@@ -1261,7 +1261,7 @@ with st.expander("Spider Diagram"):
         data = contamination_results_df_melt,
         x = "element",
         y = "norm_conc",
-        estimator = None, units = "F_contam", hue = "F_sil_remaining", linewidth = 1, legend = None)
+        estimator = None, units = "F_contam", hue = "F_contam", linewidth = 1, legend = None)
     ax3 = plt.yscale("log")
     ax3 = plt.xlabel("")
     ax3 = plt.ylabel("Residual Melt/Primitive Mantle")
