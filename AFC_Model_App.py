@@ -1278,9 +1278,12 @@ with st.expander("Spider Diagram"):
     with open(fig_contam_spider_DL, "rb") as img:
         btn = st.download_button(label = "Download Contamination Spider Plot", data = img, file_name = fig_contam_spider_DL, mime = "image/svg")
 
+st.write("-----------------------")
+st.write("")
+
 #####################################################################################################
 # ASSIMILATION FRACTIONAL CRYSTALLIZATION
 #####################################################################################################
 
-st.header("Rayleigh Fractional Crystallization")
+st.header("Assimilation Fractional Crystallization")
 st.write("Coming Soon")
