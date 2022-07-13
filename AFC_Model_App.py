@@ -39,6 +39,7 @@ plt.rcParams["axes.unicode_minus"] = 'False'
 
 st.set_page_config(page_title = "Fractionation and Contamination Modeler")
 st.title("Fractionation and Contamination Modeler")
+st.write("Contact Information: Matthew Brzozowski, PhD | matt.brzozow@gmail.com")
 
 st.write("-------------")
 st.write("")
