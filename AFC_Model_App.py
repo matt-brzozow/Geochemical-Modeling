@@ -399,7 +399,7 @@ with st.expander("Mineral-Melt Partition Coefficients"):
 
     kd_graph_subset = kd_graph_df[kd_graph_df.Element.isin(["La", "Ce", "Pr", "Nd", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu"])]
 
-    mineral_kd = st.selectbox("Mineral Kd (REE)", ("Clinopyroxene", "Plagioclase", "Orthopyroxene", "Olivine", "Magnetite", "Ilmenite", "Apatite", "Chromite", "Garnet", "Amphibole"), key = 12)
+    mineral_kd = st.selectbox("Mineral Kd (REE)", ("Clinopyroxene", "Plagioclase", "Orthopyroxene", "Olivine", "Magnetite", "Ilmenite", "Apatite", "Chromite", "Garnet", "Amphibole"), key = 100)
 
     kd_plot, ax = plt.subplots(1, 1, figsize = (9, 5))
     ax = sns.lineplot(data = kd_graph_subset, x = "Element", y = mineral_kd, size = 0.5, color = "k", legend = None)
