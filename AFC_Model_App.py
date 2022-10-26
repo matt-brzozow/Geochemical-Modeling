@@ -399,7 +399,7 @@ with st.expander("Mineral-Melt Partition Coefficients"):
 
     kd_graph_subset = kd_graph_df[kd_graph_df.Element.isin(["La", "Ce", "Pr", "Nd", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu"])]
 
-    mineral_kd = st.selectbox("Mineral Kd (REE)", ("Clinopyroxene", "Plagioclase", "Orthopyroxene", "Olivine", "Magnetite", "Ilmenite", "Apatite", "Chromite", "Garnet", "Amphibole"), key = 100)
+    mineral_kd = st.selectbox("Mineral Kd (REE)", ("Clinopyroxene", "Plagioclase", "Orthopyroxene", "Olivine", "Magnetite", "Ilmenite", "Apatite", "Chromite", "Garnet", "Amphibole"), key = 61)
 
     kd_plot, ax = plt.subplots(1, 1, figsize = (9, 5))
     ax = sns.lineplot(data = kd_graph_subset, x = "Element", y = mineral_kd, size = 0.5, color = "k", legend = None)
@@ -722,20 +722,20 @@ with st.expander("Scatter Plot"):
 
     with a1:
         X_Element_RM = st.selectbox("X-axis (Residual)", ("Th_sil_f", "Nb_sil_f", "La_sil_f", "Ce_sil_f", "Pr_sil_f", "Nd_sil_f", "Zr_sil_f", "Hf_sil_f" , "Sm_sil_f", "Eu_sil_f", "Ti_sil_f" , "Gd_sil_f", "Tb_sil_f", "Dy_sil_f", "Y_sil_f" , "Ho_sil_f", "Er_sil_f", "Tm_sil_f", "Yb_sil_f", "Lu_sil_f", "V_sil_f", "Sc_sil_f" , "La_sil_f/Sm_sil_f", "La_sil_f/Lu_sil_f", "Gd_sil_f/Yb_sil_f", "Th_sil_f/Nb_sil_f", "Th_sil_f/La_sil_f", "Sc_sil_f/Lu_sil_f"),
-        format_func = element_list.get, key = 1)
+        format_func = element_list.get, key = 62)
         X_Element_CM = st.selectbox("X-axis (Cumulate)", ("Th_sol", "Nb_sol", "La_sol", "Ce_sol", "Pr_sol", "Nd_sol", "Zr_sol", "Hf_sol" , "Sm_sol", "Eu_sol", "Ti_sol" , "Gd_sol", "Tb_sol", "Dy_sol", "Y_sol" , "Ho_sol", "Er_sol", "Tm_sol", "Yb_sol", "Lu_sol", "V_sol", "Sc_sol" , "La_sol/Sm_sol", "La_sol/Lu_sol", "Gd_sol/Yb_sol", "Th_sol/Nb_sol", "Th_sol/La_sol", "Sc_sol/Lu_sol"),
-        format_func = element_list.get, key = 2)
+        format_func = element_list.get, key = 63)
         x_min = st.number_input("X min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 23, step = 10.0)
         x_max = st.number_input("X max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 24, step = 10.0)
-        x_scale = st.selectbox("X Scale", ("linear", "log"), key = 3)
+        x_scale = st.selectbox("X Scale", ("linear", "log"), key = 64)
     with a2:
         Y_Element_RM = st.selectbox("Y-axis (Residual)", ("Th_sil_f", "Nb_sil_f", "La_sil_f", "Ce_sil_f", "Pr_sil_f", "Nd_sil_f", "Zr_sil_f", "Hf_sil_f" , "Sm_sil_f", "Eu_sil_f", "Ti_sil_f" , "Gd_sil_f", "Tb_sil_f", "Dy_sil_f", "Y_sil_f" , "Ho_sil_f", "Er_sil_f", "Tm_sil_f", "Yb_sil_f", "Lu_sil_f", "V_sil_f", "Sc_sil_f" , "La_sil_f/Sm_sil_f", "La_sil_f/Lu_sil_f", "Gd_sil_f/Yb_sil_f", "Th_sil_f/Nb_sil_f", "Th_sil_f/La_sil_f", "Sc_sil_f/Lu_sil_f"),
-        format_func = element_list.get, key = 4)
+        format_func = element_list.get, key = 65)
         Y_Element_CM = st.selectbox("Y-axis (Cumulate)", ("Th_sol", "Nb_sol", "La_sol", "Ce_sol", "Pr_sol", "Nd_sol", "Zr_sol", "Hf_sol" , "Sm_sol", "Eu_sol", "Ti_sol" , "Gd_sol", "Tb_sol", "Dy_sol", "Y_sol" , "Ho_sol", "Er_sol", "Tm_sol", "Yb_sol", "Lu_sol", "V_sol", "Sc_sol" , "La_sol/Sm_sol", "La_sol/Lu_sol", "Gd_sol/Yb_sol", "Th_sol/Nb_sol", "Th_sol/La_sol", "Sc_sol/Lu_sol"),
-        format_func = element_list.get, key = 5)
+        format_func = element_list.get, key = 66)
         y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 25, step = 10.0)
         y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 26, step = 10.0)
-        y_scale = st.selectbox("Y Scale", ("linear", "log"), key = 6)
+        y_scale = st.selectbox("Y Scale", ("linear", "log"), key = 67)
 
     st.write("")
 
@@ -1147,16 +1147,16 @@ with st.expander("Scatter Plot"):
 
     with e1:
         X_Element_contam = st.selectbox("X-axis", ("Th_melt_contam", "Nb_melt_contam", "La_melt_contam", "Ce_melt_contam", "Pr_melt_contam", "Nd_melt_contam", "Zr_melt_contam", "Hf_melt_contam" , "Sm_melt_contam", "Eu_melt_contam", "Ti_melt_contam" , "Gd_melt_contam", "Tb_melt_contam", "Dy_melt_contam", "Y_melt_contam" , "Ho_melt_contam", "Er_melt_contam", "Tm_melt_contam", "Yb_melt_contam", "Lu_melt_contam", "V_melt_contam", "Sc_melt_contam" , "La_melt_contam/Sm_melt_contam", "La_melt_contam/Lu_melt_contam", "Gd_melt_contam/Yb_melt_contam", "Th_melt_contam/Nb_melt_contam", "Th_melt_contam/La_melt_contam", "Sc_melt_contam/Lu_melt_contam"),
-        format_func = contam_element_list.get, key = 7)
+        format_func = contam_element_list.get, key = 68)
         x_min = st.number_input("X min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 53, step = 10.0)
         x_max = st.number_input("X max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 54, step = 10.0)
-        x_scale = st.selectbox("X Scale", ("linear", "log"), key = 8)
+        x_scale = st.selectbox("X Scale", ("linear", "log"), key = 69)
     with e2:
         Y_Element_contam = st.selectbox("Y-axis", ("Th_melt_contam", "Nb_melt_contam", "La_melt_contam", "Ce_melt_contam", "Pr_melt_contam", "Nd_melt_contam", "Zr_melt_contam", "Hf_melt_contam" , "Sm_melt_contam", "Eu_melt_contam", "Ti_melt_contam" , "Gd_melt_contam", "Tb_melt_contam", "Dy_melt_contam", "Y_melt_contam" , "Ho_melt_contam", "Er_melt_contam", "Tm_melt_contam", "Yb_melt_contam", "Lu_melt_contam", "V_melt_contam", "Sc_melt_contam" , "La_melt_contam/Sm_melt_contam", "La_melt_contam/Lu_melt_contam", "Gd_melt_contam/Yb_melt_contam", "Th_melt_contam/Nb_melt_contam", "Th_melt_contam/La_melt_contam", "Sc_melt_contam/Lu_melt_contam"),
         format_func = contam_element_list.get, key = 9)
         y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 55, step = 10.0)
         y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 56, step = 10.0)
-        y_scale = st.selectbox("Y Scale", ("linear", "log"), key = 10)      
+        y_scale = st.selectbox("Y Scale", ("linear", "log"), key = 70)      
 
     st.write("")
 
