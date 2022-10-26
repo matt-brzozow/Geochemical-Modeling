@@ -1153,10 +1153,10 @@ with st.expander("Scatter Plot"):
         x_scale = st.selectbox("X Scale", ("linear", "log"), key = 69)
     with e2:
         Y_Element_contam = st.selectbox("Y-axis", ("Th_melt_contam", "Nb_melt_contam", "La_melt_contam", "Ce_melt_contam", "Pr_melt_contam", "Nd_melt_contam", "Zr_melt_contam", "Hf_melt_contam" , "Sm_melt_contam", "Eu_melt_contam", "Ti_melt_contam" , "Gd_melt_contam", "Tb_melt_contam", "Dy_melt_contam", "Y_melt_contam" , "Ho_melt_contam", "Er_melt_contam", "Tm_melt_contam", "Yb_melt_contam", "Lu_melt_contam", "V_melt_contam", "Sc_melt_contam" , "La_melt_contam/Sm_melt_contam", "La_melt_contam/Lu_melt_contam", "Gd_melt_contam/Yb_melt_contam", "Th_melt_contam/Nb_melt_contam", "Th_melt_contam/La_melt_contam", "Sc_melt_contam/Lu_melt_contam"),
-        format_func = contam_element_list.get, key = 9)
+        format_func = contam_element_list.get, key = 70)
         y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 55, step = 10.0)
         y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 56, step = 10.0)
-        y_scale = st.selectbox("Y Scale", ("linear", "log"), key = 70)      
+        y_scale = st.selectbox("Y Scale", ("linear", "log"), key = 71)      
 
     st.write("")
 
