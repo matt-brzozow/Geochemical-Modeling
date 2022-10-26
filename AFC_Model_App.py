@@ -56,31 +56,31 @@ with st.expander("Starting silicate melt composition (Default is OIB)"):
     col1_a, col2_a, col3_a, col4_a = st.columns([1, 1, 1, 1])
 
     with col1_a:
-        Th_sil_i = st.number_input("Th (ppm)", min_value = 0.0, value = 4.0, key = 0)
-        Nb_sil_i = st.number_input("Nb (ppm)", min_value = 0.0, value = 48.0, key = 0)
-        La_sil_i = st.number_input("La (ppm)", min_value = 0.0, value = 37.0, key = 0)
-        Ce_sil_i = st.number_input("Ce (ppm)", min_value = 0.0, value = 80.0, key = 0)
-        Pr_sil_i = st.number_input("Pr (ppm)", min_value = 0.0, value = 9.7, key = 0)
-        Nd_sil_i = st.number_input("Nd (ppm)", min_value = 0.0, value = 38.5, key = 0)
+        Th_sil_i = st.number_input("Th (ppm)", min_value = 0.0, value = 4.0, key = 1)
+        Nb_sil_i = st.number_input("Nb (ppm)", min_value = 0.0, value = 48.0, key = 2)
+        La_sil_i = st.number_input("La (ppm)", min_value = 0.0, value = 37.0, key = 3)
+        Ce_sil_i = st.number_input("Ce (ppm)", min_value = 0.0, value = 80.0, key = 4)
+        Pr_sil_i = st.number_input("Pr (ppm)", min_value = 0.0, value = 9.7, key = 5)
+        Nd_sil_i = st.number_input("Nd (ppm)", min_value = 0.0, value = 38.5, key = 6)
     with col2_a:
-        Zr_sil_i = st.number_input("Zr (ppm)", min_value = 0.0, value = 280.0, key = 0)
-        Hf_sil_i = st.number_input("Hf (ppm)", min_value = 0.0, value = 7.8, key = 0)
-        Sm_sil_i = st.number_input("Sm (ppm)", min_value = 0.0, value = 10.0, key = 0)
-        Eu_sil_i = st.number_input("Eu (ppm)", min_value = 0.0, value = 3.0, key = 0)
-        Ti_sil_i = st.number_input("Ti (ppm)", min_value = 0.0, value = 17200.0, key = 0)
-        Gd_sil_i = st.number_input("Gd (ppm)", min_value = 0.0, value = 7.62, key = 0)
+        Zr_sil_i = st.number_input("Zr (ppm)", min_value = 0.0, value = 280.0, key = 7)
+        Hf_sil_i = st.number_input("Hf (ppm)", min_value = 0.0, value = 7.8, key = 8)
+        Sm_sil_i = st.number_input("Sm (ppm)", min_value = 0.0, value = 10.0, key = 9)
+        Eu_sil_i = st.number_input("Eu (ppm)", min_value = 0.0, value = 3.0, key = 10)
+        Ti_sil_i = st.number_input("Ti (ppm)", min_value = 0.0, value = 17200.0, key = 11)
+        Gd_sil_i = st.number_input("Gd (ppm)", min_value = 0.0, value = 7.62, key = 12)
     with col3_a:
-        Tb_sil_i = st.number_input("Tb (ppm)", min_value = 0.0, value = 1.05, key = 0)
-        Dy_sil_i = st.number_input("Dy (ppm)", min_value = 0.0, value = 5.6, key = 0)
-        Y_sil_i = st.number_input("Y (ppm)", min_value = 0.0, value = 29.0, key = 0)
-        Ho_sil_i = st.number_input("Ho (ppm)", min_value = 0.0, value = 1.06, key = 0)
-        Er_sil_i = st.number_input("Er (ppm)", min_value = 0.0, value = 2.62, key = 0)
-        Tm_sil_i = st.number_input("Tm (ppm)", min_value = 0.0, value = 0.35, key = 0)
+        Tb_sil_i = st.number_input("Tb (ppm)", min_value = 0.0, value = 1.05, key = 13)
+        Dy_sil_i = st.number_input("Dy (ppm)", min_value = 0.0, value = 5.6, key = 14)
+        Y_sil_i = st.number_input("Y (ppm)", min_value = 0.0, value = 29.0, key = 15)
+        Ho_sil_i = st.number_input("Ho (ppm)", min_value = 0.0, value = 1.06, key = 16)
+        Er_sil_i = st.number_input("Er (ppm)", min_value = 0.0, value = 2.62, key = 17)
+        Tm_sil_i = st.number_input("Tm (ppm)", min_value = 0.0, value = 0.35, key = 18)
     with col4_a:
-        Yb_sil_i = st.number_input("Yb (ppm)", min_value = 0.0, value = 2.16, key = 0)
-        Lu_sil_i = st.number_input("Lu (ppm)", min_value = 0.0, value = 0.3, key = 0)
-        V_sil_i = st.number_input("V (ppm)", min_value = 0.0, value = 500.0, key = 0)
-        Sc_sil_i = st.number_input("Sc (ppm)", min_value = 0.0, value = 100.0, key = 0)
+        Yb_sil_i = st.number_input("Yb (ppm)", min_value = 0.0, value = 2.16, key = 19)
+        Lu_sil_i = st.number_input("Lu (ppm)", min_value = 0.0, value = 0.3, key = 20)
+        V_sil_i = st.number_input("V (ppm)", min_value = 0.0, value = 500.0, key = 21)
+        Sc_sil_i = st.number_input("Sc (ppm)", min_value = 0.0, value = 100.0, key = 22)
 
 initial_melt = {
 "Elements":["Th", "Nb", "La", "Ce", "Pr", "Nd", "Zr", "Hf", "Sm", "Eu", "Ti", "Gd", "Tb", "Dy", "Y", "Ho", "Er", "Tm", "Yb", "Lu", "V", "Sc"],
@@ -725,16 +725,16 @@ with st.expander("Scatter Plot"):
         format_func = element_list.get)
         X_Element_CM = st.selectbox("X-axis (Cumulate)", ("Th_sol", "Nb_sol", "La_sol", "Ce_sol", "Pr_sol", "Nd_sol", "Zr_sol", "Hf_sol" , "Sm_sol", "Eu_sol", "Ti_sol" , "Gd_sol", "Tb_sol", "Dy_sol", "Y_sol" , "Ho_sol", "Er_sol", "Tm_sol", "Yb_sol", "Lu_sol", "V_sol", "Sc_sol" , "La_sol/Sm_sol", "La_sol/Lu_sol", "Gd_sol/Yb_sol", "Th_sol/Nb_sol", "Th_sol/La_sol", "Sc_sol/Lu_sol"),
         format_func = element_list.get)
-        x_min = st.number_input("X min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 1, step = 10.0)
-        x_max = st.number_input("X max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 1, step = 10.0)
+        x_min = st.number_input("X min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 23, step = 10.0)
+        x_max = st.number_input("X max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 24, step = 10.0)
         x_scale = st.selectbox("X Scale", ("linear", "log"), key = 1)
     with a2:
         Y_Element_RM = st.selectbox("Y-axis (Residual)", ("Th_sil_f", "Nb_sil_f", "La_sil_f", "Ce_sil_f", "Pr_sil_f", "Nd_sil_f", "Zr_sil_f", "Hf_sil_f" , "Sm_sil_f", "Eu_sil_f", "Ti_sil_f" , "Gd_sil_f", "Tb_sil_f", "Dy_sil_f", "Y_sil_f" , "Ho_sil_f", "Er_sil_f", "Tm_sil_f", "Yb_sil_f", "Lu_sil_f", "V_sil_f", "Sc_sil_f" , "La_sil_f/Sm_sil_f", "La_sil_f/Lu_sil_f", "Gd_sil_f/Yb_sil_f", "Th_sil_f/Nb_sil_f", "Th_sil_f/La_sil_f", "Sc_sil_f/Lu_sil_f"),
         format_func = element_list.get)
         Y_Element_CM = st.selectbox("Y-axis (Cumulate)", ("Th_sol", "Nb_sol", "La_sol", "Ce_sol", "Pr_sol", "Nd_sol", "Zr_sol", "Hf_sol" , "Sm_sol", "Eu_sol", "Ti_sol" , "Gd_sol", "Tb_sol", "Dy_sol", "Y_sol" , "Ho_sol", "Er_sol", "Tm_sol", "Yb_sol", "Lu_sol", "V_sol", "Sc_sol" , "La_sol/Sm_sol", "La_sol/Lu_sol", "Gd_sol/Yb_sol", "Th_sol/Nb_sol", "Th_sol/La_sol", "Sc_sol/Lu_sol"),
         format_func = element_list.get)
-        y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 1, step = 10.0)
-        y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 1, step = 10.0)
+        y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 25, step = 10.0)
+        y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 26, step = 10.0)
         y_scale = st.selectbox("Y Scale", ("linear", "log"), key = 1)
 
     st.write("")
@@ -776,9 +776,9 @@ with st.expander("REE Diagram"):
 
     b1, b2 = st.columns([1, 1])
     with b1:
-        y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 0.1, key = 2)
+        y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 0.1, key = 27)
     with b2:
-        y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 10000.0, key = 2)
+        y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 10000.0, key = 28)
 
     st.write("**Residual Melt**")
 
@@ -862,9 +862,9 @@ with st.expander("Spider Diagram"):
 
     c1, c2 = st.columns([1, 1])
     with c1:
-        y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 0.1, key = 3)
+        y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 0.1, key = 29)
     with c2:
-        y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 10000.0, key = 3)
+        y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 10000.0, key = 30)
 
     st.write("")
 
@@ -963,31 +963,31 @@ with st.expander("Composition of contaminant"):
     d1, d2, d3, d4 = st.columns([1, 1, 1, 1])
 
     with d1:
-        Th_contam = st.number_input("Th (ppm)", min_value = 0.0, value = float(), key = 4)
-        Nb_contam = st.number_input("Nb (ppm)", min_value = 0.0, value = float(), key = 4)
-        La_contam = st.number_input("La (ppm)", min_value = 0.0, value = float(), key = 4)
-        Ce_contam = st.number_input("Ce (ppm)", min_value = 0.0, value = float(), key = 4)
-        Pr_contam = st.number_input("Pr (ppm)", min_value = 0.0, value = float(), key = 4)
-        Nd_contam = st.number_input("Nd (ppm)", min_value = 0.0, value = float(), key = 4)
+        Th_contam = st.number_input("Th (ppm)", min_value = 0.0, value = float(), key = 31)
+        Nb_contam = st.number_input("Nb (ppm)", min_value = 0.0, value = float(), key = 32)
+        La_contam = st.number_input("La (ppm)", min_value = 0.0, value = float(), key = 33)
+        Ce_contam = st.number_input("Ce (ppm)", min_value = 0.0, value = float(), key = 34)
+        Pr_contam = st.number_input("Pr (ppm)", min_value = 0.0, value = float(), key = 35)
+        Nd_contam = st.number_input("Nd (ppm)", min_value = 0.0, value = float(), key = 36)
     with d2:
-        Zr_contam = st.number_input("Zr (ppm)", min_value = 0.0, value = float(), key = 4)
-        Hf_contam = st.number_input("Hf (ppm)", min_value = 0.0, value = float(), key = 4)
-        Sm_contam = st.number_input("Sm (ppm)", min_value = 0.0, value = float(), key = 4)
-        Eu_contam = st.number_input("Eu (ppm)", min_value = 0.0, value = float(), key = 4)
-        Ti_contam = st.number_input("Ti (ppm)", min_value = 0.0, value = float(), key = 4)
-        Gd_contam = st.number_input("Gd (ppm)", min_value = 0.0, value = float(), key = 4)
+        Zr_contam = st.number_input("Zr (ppm)", min_value = 0.0, value = float(), key = 37)
+        Hf_contam = st.number_input("Hf (ppm)", min_value = 0.0, value = float(), key = 38)
+        Sm_contam = st.number_input("Sm (ppm)", min_value = 0.0, value = float(), key = 39)
+        Eu_contam = st.number_input("Eu (ppm)", min_value = 0.0, value = float(), key = 40)
+        Ti_contam = st.number_input("Ti (ppm)", min_value = 0.0, value = float(), key = 41)
+        Gd_contam = st.number_input("Gd (ppm)", min_value = 0.0, value = float(), key = 42)
     with d3:
-        Tb_contam = st.number_input("Tb (ppm)", min_value = 0.0, value = float(), key = 4)
-        Dy_contam = st.number_input("Dy (ppm)", min_value = 0.0, value = float(), key = 4)
-        Y_contam = st.number_input("Y (ppm)", min_value = 0.0, value = float(), key = 4)
-        Ho_contam = st.number_input("Ho (ppm)", min_value = 0.0, value = float(), key = 4)
-        Er_contam = st.number_input("Er (ppm)", min_value = 0.0, value = float(), key = 4)
-        Tm_contam = st.number_input("Tm (ppm)", min_value = 0.0, value = float(), key = 4)
+        Tb_contam = st.number_input("Tb (ppm)", min_value = 0.0, value = float(), key = 43)
+        Dy_contam = st.number_input("Dy (ppm)", min_value = 0.0, value = float(), key = 44)
+        Y_contam = st.number_input("Y (ppm)", min_value = 0.0, value = float(), key = 45)
+        Ho_contam = st.number_input("Ho (ppm)", min_value = 0.0, value = float(), key = 46)
+        Er_contam = st.number_input("Er (ppm)", min_value = 0.0, value = float(), key = 47)
+        Tm_contam = st.number_input("Tm (ppm)", min_value = 0.0, value = float(), key = 48)
     with d4:
-        Yb_contam = st.number_input("Yb (ppm)", min_value = 0.0, value = float(), key = 4)
-        Lu_contam = st.number_input("Lu (ppm)", min_value = 0.0, value = float(), key = 4)
-        V_contam = st.number_input("V (ppm)", min_value = 0.0, value = float(), key = 4)
-        Sc_contam = st.number_input("Sc (ppm)", min_value = 0.0, value = float(), key = 4)
+        Yb_contam = st.number_input("Yb (ppm)", min_value = 0.0, value = float(), key = 49)
+        Lu_contam = st.number_input("Lu (ppm)", min_value = 0.0, value = float(), key = 50)
+        V_contam = st.number_input("V (ppm)", min_value = 0.0, value = float(), key = 51)
+        Sc_contam = st.number_input("Sc (ppm)", min_value = 0.0, value = float(), key = 52)
 
 contaminant = {
 "Elements":["Th", "Nb", "La", "Ce", "Pr", "Nd", "Zr", "Hf", "Sm", "Eu", "Ti", "Gd", "Tb", "Dy", "Y", "Ho", "Er", "Tm", "Yb", "Lu", "V", "Sc"],
@@ -1148,14 +1148,14 @@ with st.expander("Scatter Plot"):
     with e1:
         X_Element_contam = st.selectbox("X-axis", ("Th_melt_contam", "Nb_melt_contam", "La_melt_contam", "Ce_melt_contam", "Pr_melt_contam", "Nd_melt_contam", "Zr_melt_contam", "Hf_melt_contam" , "Sm_melt_contam", "Eu_melt_contam", "Ti_melt_contam" , "Gd_melt_contam", "Tb_melt_contam", "Dy_melt_contam", "Y_melt_contam" , "Ho_melt_contam", "Er_melt_contam", "Tm_melt_contam", "Yb_melt_contam", "Lu_melt_contam", "V_melt_contam", "Sc_melt_contam" , "La_melt_contam/Sm_melt_contam", "La_melt_contam/Lu_melt_contam", "Gd_melt_contam/Yb_melt_contam", "Th_melt_contam/Nb_melt_contam", "Th_melt_contam/La_melt_contam", "Sc_melt_contam/Lu_melt_contam"),
         format_func = contam_element_list.get)
-        x_min = st.number_input("X min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 5, step = 10.0)
-        x_max = st.number_input("X max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 5, step = 10.0)
+        x_min = st.number_input("X min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 53, step = 10.0)
+        x_max = st.number_input("X max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 54, step = 10.0)
         x_scale = st.selectbox("X Scale", ("linear", "log"), key = 5)
     with e2:
         Y_Element_contam = st.selectbox("Y-axis", ("Th_melt_contam", "Nb_melt_contam", "La_melt_contam", "Ce_melt_contam", "Pr_melt_contam", "Nd_melt_contam", "Zr_melt_contam", "Hf_melt_contam" , "Sm_melt_contam", "Eu_melt_contam", "Ti_melt_contam" , "Gd_melt_contam", "Tb_melt_contam", "Dy_melt_contam", "Y_melt_contam" , "Ho_melt_contam", "Er_melt_contam", "Tm_melt_contam", "Yb_melt_contam", "Lu_melt_contam", "V_melt_contam", "Sc_melt_contam" , "La_melt_contam/Sm_melt_contam", "La_melt_contam/Lu_melt_contam", "Gd_melt_contam/Yb_melt_contam", "Th_melt_contam/Nb_melt_contam", "Th_melt_contam/La_melt_contam", "Sc_melt_contam/Lu_melt_contam"),
         format_func = contam_element_list.get)
-        y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 5, step = 10.0)
-        y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 5, step = 10.0)
+        y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, value = 0.1, key = 55, step = 10.0)
+        y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, value = 20.0, key = 56, step = 10.0)
         y_scale = st.selectbox("Y Scale", ("linear", "log"), key = 5)      
 
     st.write("")
@@ -1190,9 +1190,9 @@ with st.expander("Contamination REE Diagram"):
     f1, f2 = st.columns([1, 1])
 
     with f1:
-        y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 0.1, key = 6)
+        y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 0.1, key = 57)
     with f2:
-        y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 10000.0, key = 6)
+        y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 10000.0, key = 58)
 
     st.write("")
 
@@ -1239,9 +1239,9 @@ with st.expander("Spider Diagram"):
 
     g1, g2 = st.columns([1, 1])
     with g1:
-        y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 0.1, key = 7)
+        y_min = st.number_input("Y min", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 0.1, key = 59)
     with g2:
-        y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 10000.0, key = 7)
+        y_max = st.number_input("Y max", min_value = 0.0, max_value = 1000000.0, step = 100.0, value = 10000.0, key = 60)
 
     st.write("")
 
